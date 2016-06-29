@@ -1,30 +1,28 @@
-###################################################
-# All following instructions are executed as root #
-###################################################
-sudo su -
-
-###################################################
-# install ffmpeg - may take 20 minutes
-###################################################
-
-wget https://gist.githubusercontent.com/xdamman/e4f713c8cd1a389a5917/raw/7ebe0b7010ad59a61ddccf5c455d226c843584dc/install_ffmpeg_ubuntu.sh
-sh install_ffmpeg_ubuntu.sh
-
-###################################################
-# install opencv - may take 20 minutes
-###################################################
-
-wget https://raw.githubusercontent.com/milq/scripts-ubuntu-debian/master/install-opencv.sh
-sh install-opencv.sh
-
-###################################################
-# install caffe
-###################################################
-
 apt-get -y install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 apt-get -y install --no-install-recommends libboost-all-dev
 apt-get -y install libatlas-base-dev
 apt-get -y install libgflags-dev libgoogle-glog-dev liblmdb-dev
+pip install scikit-image
 
-cd ~
 git clone https://github.com/BVLC/caffe
+cd caffe
+
+echo 'CPU_ONLY := 1' > Makefile.config
+echo 'USE_OPENCV := 0' >> Makefile.config
+echo 'BLAS := atlas' >> Makefile.config
+echo 'PYTHON_INCLUDE := /usr/local/lib/python2.7.11/include/python2.7 /usr/local/lib/python2.7.11/lib/python2.7/site-packages/numpy/core/include' >> Makefile.config
+echo 'PYTHON_LIB := /usr/local/lib/python2.7.11/lib' >> Makefile.config
+echo 'INCLUDE_DIRS := $(PYTHON_INCLUDE) /usr/local/include' >> Makefile.config
+echo 'LIBRARY_DIRS := $(PYTHON_LIB) /usr/local/lib /usr/lib' >> Makefile.config
+echo 'BUILD_DIR := build' >> Makefile.config
+echo 'DISTRIBUTE_DIR := distribute' >> Makefile.config
+echo 'TEST_GPUID := 0' >> Makefile.config
+echo 'Q ?= @' >> Makefile.config
+
+make clean
+make -j8 all
+make -j8 test
+make -j8 runtest
+make -j8 pycaffe
+make distribute
+cp -r python/caffe /usr/local/lib/python2.7.11/lib/python2.7/site-packages/

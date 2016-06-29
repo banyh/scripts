@@ -32,6 +32,7 @@ cd Python-2.7.11/
 ./configure --prefix /usr/local/lib/python2.7.11 --enable-ipv6
 make -j8
 make install
+ldconfig -v
 cd ..
 ln -sf /usr/local/lib/python2.7.11/bin/python /usr/local/bin/python
 ln -sf /usr/local/lib/python2.7.11/bin/python /usr/local/bin/python2
@@ -47,6 +48,7 @@ cd Python-3.5.1/
 ./configure --prefix /usr/local/lib/python3.5.1 --enable-ipv6
 make -j8
 make install
+ldconfig -v
 cd ..
 ln -sf /usr/local/lib/python3.5.1/bin/python3 /usr/local/bin/python3
 hash -d python3
@@ -66,8 +68,8 @@ pip install scipy nltk gensim janome konlpy jieba pandas jupyter django virtuale
 pip3 install scipy nltk gensim janome konlpy jieba pandas jupyter django virtualenv mkdocs
 
 # install scikit-learn
-pip install scikit-learn
-pip3 install scikit-learn
+pip install scikit-learn scikit-image matplotlib
+pip3 install scikit-learn scikit-image matplotlib
 
 # install FISH
 apt-add-repository ppa:fish-shell/release-2
