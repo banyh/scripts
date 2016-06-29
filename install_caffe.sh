@@ -19,10 +19,12 @@ echo 'DISTRIBUTE_DIR := distribute' >> Makefile.config
 echo 'TEST_GPUID := 0' >> Makefile.config
 echo 'Q ?= @' >> Makefile.config
 
-make clean
+mkdir build
+cd build
+cmake ..
 make -j8 all
-make -j8 test
+make install
 make -j8 runtest
-make -j8 pycaffe
-make distribute
-cp -r python/caffe /usr/local/lib/python2.7.11/lib/python2.7/site-packages/
+
+cp -r install/python/caffe /usr/local/lib/python2.7.11/lib/python2.7/site-packages/
+cp install/lib/*.* /usr/local/lib/

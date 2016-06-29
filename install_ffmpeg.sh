@@ -60,7 +60,8 @@ git clone --depth 1 git://source.ffmpeg.org/ffmpeg
 cd ffmpeg
 ./configure --enable-gpl --enable-libfaac --enable-libmp3lame --enable-libopencore-amrnb \
   --enable-libopencore-amrwb --enable-librtmp --enable-libtheora --enable-libvorbis \
-  --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 --enable-pic
+  --enable-libvpx --enable-libx264 --enable-nonfree --enable-version3 --enable-pic \
+  --enable-shared --cc="gcc -m64 -fPIC"
 make -j8
 checkinstall --pkgname=ffmpeg --pkgversion="5:$(date +%Y%m%d%H%M)-git" --backup=no \
   --deldoc=yes --fstrans=no --default

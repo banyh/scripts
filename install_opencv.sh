@@ -9,13 +9,8 @@ cd opencv_contrib
 git checkout 3.0.0
 
 cd ~/opencv
-#
-# Edit: opencv/modules/videoio/src/cap_ffmpeg_impl.hpp
-# replace "AVCodecID" with "CV_CODEC_ID" in line 1490:
-#     from "AVCodecID c_id = c->codec_id;"
-#     to   "CV_CODEC_ID c_id = c->codec_id;"
-#
-sed -Ei 's/AVCodecID c_id/CV_CODEC_ID c_id/' modules/videoio/src/cap_ffmpeg_impl.hpp
+wget https://raw.githubusercontent.com/Itseez/opencv/f88e9a748a37e5df00912524e590fb295e7dab70/modules/videoio/src/cap_ffmpeg_impl.hpp
+cp -f cap_ffmpeg_impl.hpp modules/videoio/src/cap_ffmpeg_impl.hpp
 
 mkdir build
 cd build
@@ -29,4 +24,6 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 make -j8
 make install
 ldconfig
-ln -s /usr/local/lib/python2.7/site-packages/cv2.so cv2.so
+cp /usr/lib/python2.7/dist-packages/cv2.so /usr/local/lib/python2.7.11/lib/python2.7/site-packages/cv2.so
+cp /usr/lib/python2.7/dist-packages/cv.py /usr/local/lib/python2.7.11/lib/python2.7/site-packages/cv.py
+ln /dev/null /dev/raw1394
