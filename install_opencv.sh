@@ -1,29 +1,58 @@
-cd ~
-git clone https://github.com/Itseez/opencv.git
-cd opencv
-git checkout 3.0.0
+apt-get -y install build-essential cmake git pkg-config
+apt-get -y install libjpeg8-dev libtiff4-dev libjasper-dev libpng12-dev
+apt-get -y install libgtk2.0-dev
+apt-get -y install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+apt-get -y install libatlas-base-dev gfortran
 
-cd ~
-git clone https://github.com/Itseez/opencv_contrib.git
-cd opencv_contrib
-git checkout 3.0.0
+#
+# MUST upgrade to cmake 3.x to build opencv
+#
+add-apt-repository -y ppa:george-edison55/cmake-3.x
+apt-get update
+apt-get -y install cmake
+apt-get -y upgrade
 
-cd ~/opencv
-wget https://raw.githubusercontent.com/Itseez/opencv/f88e9a748a37e5df00912524e590fb295e7dab70/modules/videoio/src/cap_ffmpeg_impl.hpp
-cp -f cap_ffmpeg_impl.hpp modules/videoio/src/cap_ffmpeg_impl.hpp
+wget http://downloads.sourceforge.net/project/opencvlibrary/opencv-unix/3.0.0/opencv-3.0.0.zip
+unzip opencv-3.0.0.zip
+rm opencv-3.0.0.zip
 
+export PYTHON2_EXECUTABLE=/usr/local/lib/python2.7.11/bin/python
+export PYTHON2_LIBRARIES=/usr/local/lib/python2.7.11/lib/libpython2.7.so
+export PYTHON2_PACKAGES_PATH=/usr/local/lib/python2.7.11/lib/python2.7/site-packages/
+export PYTHON2_NUMPY_INCLUDE_DIRS=/usr/local/lib/python2.7.11/lib/python2.7/site-packages/numpy/core/include/
+export PYTHON2_INCLUDE_DIR=/usr/local/lib/python2.7.11/include/python2.7/
+
+export PYTHON3_EXECUTABLE=/usr/local/lib/python3.5.1/bin/python3
+export PYTHON3_LIBRARIES=/usr/local/lib/python3.5.1/lib/libpython3.5m.so
+export PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.5.1/lib/python3.5/site-packages/
+export PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5.1/lib/python3.5/site-packages/numpy/core/include/
+export PYTHON3_INCLUDE_DIR=/usr/local/lib/python3.5.1/include/python3.5m/
+
+cd opencv-3.0.0
 mkdir build
 cd build
-cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local \
-    -D INSTALL_C_EXAMPLES=ON \
-    -D INSTALL_PYTHON_EXAMPLES=ON \
-    -D OPENCV_EXTRA_MODULES_PATH=~/opencv_contrib/modules \
-    -D BUILD_EXAMPLES=ON ..
 
-make -j8
+#
+# build opencv for python 2
+#
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local/lib/python2.7.11 \
+    -D BUILD_opencv_python2=ON ..
+
+make -j16
 make install
-ldconfig
-cp /usr/lib/python2.7/dist-packages/cv2.so /usr/local/lib/python2.7.11/lib/python2.7/site-packages/cv2.so
-cp /usr/lib/python2.7/dist-packages/cv.py /usr/local/lib/python2.7.11/lib/python2.7/site-packages/cv.py
-ln /dev/null /dev/raw1394
+
+#
+# build opencv for python 3
+#
+cd ..
+mkdir build2
+cd build2
+cmake -D CMAKE_BUILD_TYPE=RELEASE \
+    -D CMAKE_INSTALL_PREFIX=/usr/local/lib/python3.5.1 \
+    -D BUILD_opencv_python3=ON ..
+make -j16
+make install
+
+python -c "import cv2; print cv2.__version__"
+python3 -c "import cv2; print(cv2.__version__)"
