@@ -1,7 +1,15 @@
-apt-get -y install libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
-apt-get -y install --no-install-recommends libboost-all-dev
+##
+## Prerequisite
+## 1. cmake >= 3.2
+## 2. opencv
+## 3. libboost corresponds to your python. ex: python 2.7.11 use libboost 1.59.0
+##
+
+apt-get -y install libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
 apt-get -y install libatlas-base-dev doxygen
 apt-get -y install libgflags-dev libgoogle-glog-dev liblmdb-dev
+#apt-get -y install --no-install-recommends libboost-all-dev
+#apt-get -y install libopencv-dev
 pip install scikit-image
 
 git clone https://github.com/BVLC/caffe
@@ -11,10 +19,9 @@ mkdir build
 cd build
 cmake -DOpenCV_DIR=/usr/local/lib/python2.7.11/share/OpenCV \
       -DUSE_OPENCV=1 \
-      -DPYTHON_EXECUTABLE=/usr/bin/python \
-      -DPYTHON_LIB=/usr/lib/x86_64-linux-gnu \
-      -DPYTHON_INCLUDE='/usr/include/python2.7 /usr/include/python2.7/numpy' \
-      -DPYTHON_LIBRARY=/usr/lib/x86_64-linux-gnu/libpython2.7.so \
+      -DPYTHON_EXECUTABLE=/usr/local/lib/python2.7.11/bin/python \
+      -DPYTHON_INCLUDE_DIR=/usr/local/lib/python2.7.11/include/python2.7 \
+      -DPYTHON_LIBRARY=/usr/local/lib/python2.7.11/lib/libpython2.7.so \
       ..
 make -j16 all
 make install

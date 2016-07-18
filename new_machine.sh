@@ -70,8 +70,8 @@ pip install scipy nltk gensim janome konlpy jieba pandas jupyter django virtuale
 pip3 install scipy nltk gensim janome konlpy jieba pandas jupyter django virtualenv mkdocs
 
 # install scikit-learn
-pip install scikit-learn scikit-image matplotlib theano
-pip3 install scikit-learn scikit-image matplotlib theano
+pip install scikit-learn scikit-image matplotlib theano keras sk-video
+pip3 install scikit-learn scikit-image matplotlib theano keras sk-video
 
 # install FISH
 apt-add-repository ppa:fish-shell/release-2
@@ -84,6 +84,10 @@ add-apt-repository ppa:openjdk-r/ppa
 apt-get update
 apt-get -y install openjdk-8-jdk
 
+curl -Lo /usr/local/bin/rmate https://raw.githubusercontent.com/textmate/rmate/master/bin/rmate
+ln -s /usr/local/bin/rmate /usr/local/bin/rsub
+chmod a+x /usr/local/bin/rmate
+
 ##################################################
 # Following scripts are executed as normal user  #
 ##################################################
@@ -94,12 +98,11 @@ exit  # exit sudo su -
 mkdir -p ~/.config/fish
 echo "alias ll 'ls -laFh'" > ~/.config/fish/config.fish
 echo "alias l 'ls -CF'" >> ~/.config/fish/config.fish
+echo "alias .. 'cd ..'" >> ~/.config/fish/config.fish
+echo "alias ... 'cd ../..'" >> ~/.config/fish/config.fish
+echo "" >> ~/.config/fish/config.fish
+echo 'set -x PATH /usr/local/lib/python2.7.11/bin /usr/local/lib/python3.5.1/bin $PATH' >> ~/.config/fish/config.fish
 chsh --shell /usr/bin/fish
-
-# get rmate
-mkdir ~/bin
-curl -Lo ~/bin/rmate https://raw.githubusercontent.com/textmate/rmate/master/bin/rmate
-chmod a+x ~/bin/rmate
 
 # set up jupyter notebook
 jupyter notebook --generate-config

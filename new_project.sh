@@ -19,7 +19,7 @@ pip install -r requirements.txt
 cp src/$PROJECT_NAME/settings/local.sample.env src/$PROJECT_NAME/settings/local.env
 sed -i "s/{{ secret_key }}/$SECRET_KEY/g" src/$PROJECT_NAME/settings/local.env
 
-echo 'site_name: news_scraper' > mkdocs.yml
+echo "site_name: $PROJECT_NAME" > mkdocs.yml
 echo 'dev_addr: 0.0.0.0:8001' >> mkdocs.yml
 
 cd src
