@@ -6,7 +6,7 @@
 ##
 
 apt-get -y install libprotobuf-dev libleveldb-dev libsnappy-dev libhdf5-serial-dev protobuf-compiler
-apt-get -y install libatlas-base-dev doxygen
+apt-get -y install libatlas-base-dev doxygen cmake
 apt-get -y install libgflags-dev libgoogle-glog-dev liblmdb-dev
 #apt-get -y install --no-install-recommends libboost-all-dev
 #apt-get -y install libopencv-dev
@@ -23,10 +23,11 @@ cmake -DOpenCV_DIR=/usr/local/lib/python2.7.11/share/OpenCV \
       -DPYTHON_INCLUDE_DIR=/usr/local/lib/python2.7.11/include/python2.7 \
       -DPYTHON_LIBRARY=/usr/local/lib/python2.7.11/lib/libpython2.7.so \
       ..
-make -j16 all
+make -j24 all
 make install
 
 cp -r install/python/caffe /usr/local/lib/python2.7.11/lib/python2.7/site-packages/
 cp install/lib/*.* /usr/local/lib/
 
-make -j16 runtest  # optional
+# make -j16 runtest  # optional
+cd ../..

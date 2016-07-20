@@ -19,6 +19,7 @@ mv meteor.sh /usr/local/bin
 #
 # Tensorflow VGG16 and VGG19
 #
+cd /media
 git clone https://github.com/machrisaa/tensorflow-vgg
 cd tensorflow-vgg
 wget https://dl.dropboxusercontent.com/u/50333326/vgg16.npy

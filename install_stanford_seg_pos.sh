@@ -1,3 +1,6 @@
+# before installing, you must make sure java is version 8
+# use 'update-alternatives --config java' to select correct version
+
 wget http://nlp.stanford.edu/software/stanford-postagger-full-2015-12-09.zip
 unzip stanford-postagger-full-2015-12-09.zip
 rm -f stanford-postagger-full-2015-12-09.zip
@@ -8,6 +11,7 @@ cd stanford-postagger-full-2015-12-09
 sh install.sh
 sh make.sh
 nohup sh run.sh &
+cd ..
 
 wget http://nlp.stanford.edu/software/stanford-segmenter-2015-12-09.zip
 unzip stanford-segmenter-2015-12-09.zip
@@ -19,3 +23,6 @@ cd stanford-segmenter-2015-12-09
 sh install.sh
 sh make.sh
 nohup sh run.sh &
+cd ..
+
+ps x | grep stanford

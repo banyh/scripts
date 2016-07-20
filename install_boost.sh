@@ -5,3 +5,4 @@ rm -f boost_1_59_0.tar.gz
 cd boost_1_59_0
 ./bootstrap.sh
 ./b2 install
+cd ..

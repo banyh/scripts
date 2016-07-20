@@ -12,7 +12,7 @@ apt-get update
 apt-get -y install cmake
 apt-get -y upgrade
 
-https://github.com/Itseez/opencv/archive/3.1.0.zip
+wget https://github.com/Itseez/opencv/archive/3.1.0.zip
 unzip 3.1.0.zip
 rm 3.1.0.zip
 
@@ -65,6 +65,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_opencv_python3=ON ..
 make -j24
 make install
+cd ../..
 
 python -c "import cv2; print cv2.__version__"
 python3 -c "import cv2; print(cv2.__version__)"
