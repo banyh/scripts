@@ -15,4 +15,4 @@ software-properties-common curl
 
 sh install_ffmpeg.sh
 sh install_git.sh
-sh install_gpu.sh
+sh install_gpu_1.sh

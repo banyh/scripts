@@ -1,6 +1,9 @@
 # before installing, you must make sure java is version 8
 # use 'update-alternatives --config java' to select correct version
 
+cd ~
+update-alternatives --set java /usr/lib/jvm/java-8-openjdk-amd64/jre/bin/java
+
 wget http://nlp.stanford.edu/software/stanford-postagger-full-2015-12-09.zip
 unzip stanford-postagger-full-2015-12-09.zip
 rm -f stanford-postagger-full-2015-12-09.zip
@@ -25,4 +28,4 @@ sh make.sh
 nohup sh run.sh &
 cd ..
 
-ps x | grep stanford
+ps x | grep java
