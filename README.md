@@ -1,6 +1,6 @@
 ## Setup up TensorFlow and Caffe environment on Ubuntu 14.04 with a GPU
 
-1. Checkout this repository
+### Checkout this repository
 
 ```shell-script
 wget https://github.com/banyh/scripts/archive/master.zip
@@ -11,14 +11,14 @@ chmod +x *.sh
 ```
 
 
-2. Install ffmpeg, git, Nvidia driver, then reboot
+### Install ffmpeg, git, Nvidia driver, then reboot
 
 ```shell-script
 ./new_machine_1.sh
 ```
 
 
-3. Install python, opencv, caffe, tensorflow
+### Install python, opencv, caffe, tensorflow
 
 ```shell-script
 ./new_machine_2.sh
@@ -27,7 +27,7 @@ chmod +x *.sh
 
 ## Validate the environment
 
-1. Validate OpenCV version
+### Validate OpenCV version
 
 Following instructions should output two `3.1.0`.
 
@@ -37,7 +37,7 @@ python3 -c "import cv2; print(cv2.__version__)"
 ```
 
 
-2. Validate Caffe
+### Validate Caffe
 
 If you have enough time, go to Caffe build directory and type:
 
@@ -47,7 +47,7 @@ make -j16 runtest
 ```
 
 
-3. Validate TensorFlow
+### Validate TensorFlow
 
 Run following instructions:
 
@@ -84,7 +84,7 @@ Creating TensorFlow device (/gpu:1) -> (device: 1, name: Tesla K80, pci bus id: 
 ```
 
 
-4. Validate Stanford pos-tagger and segmenter
+### Validate Stanford pos-tagger and segmenter
 
 You should see `service.endp.PosServicePublisher` and `service.endp.SegServicePublisher` are runned by `java`.
 
