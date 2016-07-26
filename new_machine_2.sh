@@ -71,8 +71,8 @@ add-apt-repository -y ppa:openjdk-r/ppa
 apt-get -y update
 apt-get -y install openjdk-8-jdk
 
-curl -Lo /usr/local/bin/rmate https://raw.githubusercontent.com/textmate/rmate/master/bin/rmate
-ln -s /usr/local/bin/rmate /usr/local/bin/rsub
+curl -Lo /usr/local/bin/rmate https://raw.githubusercontent.com/aurora/rmate/master/rmate
+ln -sf /usr/local/bin/rmate /usr/local/bin/rsub
 chmod a+x /usr/local/bin/rmate
 
 sh install_opencv.sh
