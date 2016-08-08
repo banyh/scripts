@@ -21,25 +21,28 @@ wget https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_
 cd ..
 
 #
-# word vectors from word2vec and GloVe
+# word vectors from word2vec
 #
 mkdir wordvec
 cd wordvec
 wget https://gliacloud.blob.core.windows.net/nlp/GoogleNews-vectors-negative300.bin.gz
 gunzip GoogleNews-vectors-negative300.bin.gz
 wget https://gliacloud.blob.core.windows.net/nlp/jawiki.tar.gz
+tar xzf jawiki.tar.gz
+rm jawiki.tar.gz
 wget https://gliacloud.blob.core.windows.net/nlp/zhwiki_stanford.tar.gz
 tar xzf zhwiki_stanford.tar.gz
 rm zhwiki_stanford.tar.gz
-tar xzf jawiki.tar.gz
-rm jawiki.tar.gz
+wget https://gliacloud.blob.core.windows.net/nlp/twwiki_stan_dict.tgz
+tar xzf twwiki_stan_dict.tgz
+rm twwiki_stan_dict.tgz
 
-wget http://nlp.stanford.edu/data/glove.6B.zip
-wget http://nlp.stanford.edu/data/glove.42B.300d.zip
-wget http://nlp.stanford.edu/data/glove.840B.300d.zip
-apt-get -y install unzip
-unzip glove.6B.zip
-unzip glove.42B.300d.zip
-unzip glove.840B.300d.zip
-rm -f *.zip
-cd ..
+#
+# word vectors from fasttext
+#
+wget https://gliacloud.blob.core.windows.net/nlp/twwiki_fasttext.tgz
+tar xzf twwiki_fasttext.tgz
+rm twwiki_fasttext.tgz
+wget https://gliacloud.blob.core.windows.net/nlp/enwiki_fasttext.tgz
+tar xzf enwiki_fasttext.tgz
+rm enwiki_fasttext.tgz

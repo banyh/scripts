@@ -7,6 +7,8 @@ echo "alias ... 'cd ../..'" >> ~/.config/fish/config.fish
 echo "alias vs 'rsub -p 52689'" >> ~/.config/fish/config.fish
 echo "alias sub 'rsub -p 52698'" >> ~/.config/fish/config.fish
 echo "" >> ~/.config/fish/config.fish
+echo "set -x LC_ALL en_US.UTF-8" >> ~/.config/fish/config.fish
+echo "set -x LC_CTYPE en_US.UTF-8" >> ~/.config/fish/config.fish
 echo 'set -x PATH /usr/local/lib/python2.7.11/bin /usr/local/lib/python3.5.1/bin $PATH' >> ~/.config/fish/config.fish
 #chsh --shell /usr/bin/fish
 source ~/.config/fish/config.fish
