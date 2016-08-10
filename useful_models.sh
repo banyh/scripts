@@ -1,7 +1,7 @@
 #!/bin/sh
 
 #
-# vGG Net pretrained model
+# vGG Net pretrained models
 # http://www.robots.ox.ac.uk/%7Evgg/research/very_deep/
 #
 cd /media
@@ -18,6 +18,13 @@ wget https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/f02f8
 wget http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel
 wget https://raw.githubusercontent.com/BVLC/caffe/master/models/bvlc_reference_caffenet/deploy.prototxt
 wget https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy
+
+#
+# ResNet pretrained models
+#
+wget https://gliacloud.blob.core.windows.net/nlp/ResNet.tgz
+tar xzf ResNet.tgz
+rm ResNet.tgz
 cd ..
 
 #
@@ -46,3 +53,6 @@ rm twwiki_fasttext.tgz
 wget https://gliacloud.blob.core.windows.net/nlp/enwiki_fasttext.tgz
 tar xzf enwiki_fasttext.tgz
 rm enwiki_fasttext.tgz
+wget https://gliacloud.blob.core.windows.net/nlp/jawiki_fasttext.tgz
+tar xzf jawiki_fasttext.tgz
+rm jawiki_fasttext.tgz
