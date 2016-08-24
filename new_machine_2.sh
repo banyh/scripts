@@ -42,11 +42,11 @@ curl https://bootstrap.pypa.io/get-pip.py | python3
 ln -sf /usr/local/lib/python3.5.1/bin/pip3 /usr/local/bin/pip3
 
 # install tensorflow for python 2.7
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp27-none-linux_x86_64.whl
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl
 pip install --upgrade $TF_BINARY_URL
 
 # install tensorflow for python 3.5
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow-0.9.0-cp35-cp35m-linux_x86_64.whl
+export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.10.0rc0-cp35-cp35m-linux_x86_64.whl
 pip3 install --upgrade $TF_BINARY_URL
 
 # install Python packages

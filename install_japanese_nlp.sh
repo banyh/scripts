@@ -9,14 +9,14 @@ cd juman-7.01
 ./configure
 make -j24
 sudo make install
-sudo apt-get install libjuman4
+sudo apt-get -y install libjuman4
 cd ..
 echo "今日は晴れです。" | juman
 
 #
 # Install KNP
 #
-sudo apt-get install TinyCDB
+sudo apt-get -y install TinyCDB
 wget "http://nlp.ist.i.kyoto-u.ac.jp/DLcounter/lime.cgi?down=http://nlp.ist.i.kyoto-u.ac.jp/nl-resource/knp/knp-4.16.tar.bz2&name=knp-4.16.tar.bz2" -O knp-4.16.tar.bz2
 bunzip2 knp-4.16.tar.bz2
 tar xvf knp-4.16.tar
