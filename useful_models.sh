@@ -13,8 +13,22 @@ wget http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_19_laye
 wget https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/f02f8769e64494bcd3d7e97d5d747ac275825721/VGG_ILSVRC_19_layers_deploy.prototxt
 
 #
+# Tensorflow VGG16 and VGG19
+#
+cd /media
+mkdir tensorflow
+git clone https://github.com/machrisaa/tensorflow-vgg
+mv tensorflow-vgg vgg
+cd vgg
+wget https://dl.dropboxusercontent.com/u/50333326/vgg16.npy
+wget https://dl.dropboxusercontent.com/u/50333326/vgg19.npy
+python test_vgg16.py
+python test_vgg19.py
+
+#
 # Caffe reference model
 #
+cd /media/caffe
 wget http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel
 wget https://raw.githubusercontent.com/BVLC/caffe/master/models/bvlc_reference_caffenet/deploy.prototxt
 wget https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy
@@ -22,10 +36,21 @@ wget https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_
 #
 # ResNet pretrained models
 #
+cd /media/caffe
 wget https://gliacloud.blob.core.windows.net/nlp/ResNet.tgz
 tar xzf ResNet.tgz
 rm ResNet.tgz
-cd ..
+
+#
+# Tensorflow ResNet
+#
+cd /media/tensorflow
+wget https://gliacloud.blob.core.windows.net/nlp/tensorflow-resnet.tgz
+tar xvfz tensorflow-resnet.tgz
+rm tensorflow-resnet.tgz
+mv tensorflow-resnet resnet
+cd resnet
+python forward.py
 
 #
 # word vectors from word2vec
@@ -61,6 +86,7 @@ cd ..
 #
 # Parsey's Cousins: A collection of pretrained syntactic models
 #
+cd /media
 mkdir parsey_universal
 cd parsey_universal
 wget http://download.tensorflow.org/models/parsey_universal/Ancient_Greek-PROIEL.zip
@@ -116,4 +142,29 @@ wget http://download.tensorflow.org/models/parsey_universal/Swedish.zip
 wget http://download.tensorflow.org/models/parsey_universal/Tamil.zip
 wget http://download.tensorflow.org/models/parsey_universal/Turkish.zip
 for f in *.zip; unzip $f; end for  # this is FISH syntax
+for dir in *; cd $dir; chmod 644 *; cd ..; end for
+chmod 755 *
 rm *.zip
+
+#
+# SyntaxNet (installed as a normal user)
+#
+cd ~
+wget https://github.com/bazelbuild/bazel/releases/download/0.2.2b/bazel-0.2.2b-installer-linux-x86_64.sh
+chmod +x bazel-0.2.2b-installer-linux-x86_64.sh
+./bazel-0.2.2b-installer-linux-x86_64.sh --user
+rm bazel-0.2.2b-installer-linux-x86_64.sh
+set PATH $PATH ~/bin
+sudo apt-get -y install swig
+sudo pip install -U protobuf==3.0.0b2
+sudo pip install asciitree
+###
+git clone --recursive https://github.com/tensorflow/models.git
+cd models/syntaxnet/tensorflow
+./configure
+cd ..
+bazel test syntaxnet/... util/utf8/...
+cp syntaxnet/models/parsey_universal/*.sh .
+echo 'Bob brought the pizza to Alice.' | bash parse.sh /media/parsey_universal/English
+echo '球 從 天上 掉 下來' | bash parse.sh /media/parsey_universal/Chinese
+echo '球從天上掉下來' | bash tokenize_zh.sh

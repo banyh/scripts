@@ -16,14 +16,3 @@ chmod +x meteor.sh
 mv meteor.sh /usr/local/bin
 
 
-#
-# Tensorflow VGG16 and VGG19
-#
-cd /media
-git clone https://github.com/machrisaa/tensorflow-vgg
-cd tensorflow-vgg
-wget https://dl.dropboxusercontent.com/u/50333326/vgg16.npy
-wget https://dl.dropboxusercontent.com/u/50333326/vgg19.npy
-python test_vgg16.py
-python test_vgg19.py
-
