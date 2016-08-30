@@ -4,7 +4,7 @@
 # vGG Net pretrained models
 # http://www.robots.ox.ac.uk/%7Evgg/research/very_deep/
 #
-cd /media
+cd /data
 mkdir caffe
 cd caffe
 wget http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_16_layers.caffemodel
@@ -15,7 +15,7 @@ wget https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/f02f8
 #
 # Tensorflow VGG16 and VGG19
 #
-cd /media
+cd /data
 mkdir tensorflow
 git clone https://github.com/machrisaa/tensorflow-vgg
 mv tensorflow-vgg vgg
@@ -28,7 +28,7 @@ python test_vgg19.py
 #
 # Caffe reference model
 #
-cd /media/caffe
+cd /data/caffe
 wget http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel
 wget https://raw.githubusercontent.com/BVLC/caffe/master/models/bvlc_reference_caffenet/deploy.prototxt
 wget https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy
@@ -36,7 +36,7 @@ wget https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_
 #
 # ResNet pretrained models
 #
-cd /media/caffe
+cd /data/caffe
 wget https://gliacloud.blob.core.windows.net/nlp/ResNet.tgz
 tar xzf ResNet.tgz
 rm ResNet.tgz
@@ -44,7 +44,7 @@ rm ResNet.tgz
 #
 # Tensorflow ResNet
 #
-cd /media/tensorflow
+cd /data/tensorflow
 wget https://gliacloud.blob.core.windows.net/nlp/tensorflow-resnet.tgz
 tar xvfz tensorflow-resnet.tgz
 rm tensorflow-resnet.tgz
@@ -86,7 +86,7 @@ cd ..
 #
 # Parsey's Cousins: A collection of pretrained syntactic models
 #
-cd /media
+cd /data
 mkdir parsey_universal
 cd parsey_universal
 wget http://download.tensorflow.org/models/parsey_universal/Ancient_Greek-PROIEL.zip
@@ -165,6 +165,6 @@ cd models/syntaxnet/tensorflow
 cd ..
 bazel test syntaxnet/... util/utf8/...
 cp syntaxnet/models/parsey_universal/*.sh .
-echo 'Bob brought the pizza to Alice.' | bash parse.sh /media/parsey_universal/English
-echo '球 從 天上 掉 下來' | bash parse.sh /media/parsey_universal/Chinese
+echo 'Bob brought the pizza to Alice.' | bash parse.sh /data/parsey_universal/English
+echo '球 從 天上 掉 下來' | bash parse.sh /data/parsey_universal/Chinese
 echo '球從天上掉下來' | bash tokenize_zh.sh

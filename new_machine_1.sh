@@ -11,7 +11,7 @@ libffi6-dbg libgdbm-dev libgpm2 libncursesw5-dev libreadline-dev \
 libsqlite3-dev libssl-dev libtinfo-dev mime-support net-tools \
 netbase python-crypto python-mox3 python-pil python-ply quilt \
 tk-dev zlib1g-dev libblas-dev liblapack-dev gfortran \
-software-properties-common curl
+software-properties-common curl unzip
 
 sh install_ffmpeg.sh
 sh install_git.sh

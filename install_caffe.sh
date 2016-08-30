@@ -17,16 +17,16 @@ cd caffe
 
 mkdir build
 cd build
-cmake -DOpenCV_DIR=/usr/local/lib/python2.7.11/share/OpenCV \
+cmake -DOpenCV_DIR=/usr/local/lib/python2.7.12/share/OpenCV \
       -DUSE_OPENCV=1 \
-      -DPYTHON_EXECUTABLE=/usr/local/lib/python2.7.11/bin/python \
-      -DPYTHON_INCLUDE_DIR=/usr/local/lib/python2.7.11/include/python2.7 \
-      -DPYTHON_LIBRARY=/usr/local/lib/python2.7.11/lib/libpython2.7.so \
+      -DPYTHON_EXECUTABLE=/usr/local/lib/python2.7.12/bin/python \
+      -DPYTHON_INCLUDE_DIR=/usr/local/lib/python2.7.12/include/python2.7 \
+      -DPYTHON_LIBRARY=/usr/local/lib/python2.7.12/lib/libpython2.7.so \
       ..
 make -j24 all
 make install
 
-cp -r install/python/caffe /usr/local/lib/python2.7.11/lib/python2.7/site-packages/
+cp -r install/python/caffe /usr/local/lib/python2.7.12/lib/python2.7/site-packages/
 cp install/lib/*.* /usr/local/lib/
 
 # make -j16 runtest  # optional
@@ -38,7 +38,7 @@ cd ../..
 # cmake -DUSE_OPENCV=0 \
 #       -DPYTHON_EXECUTABLE=$PROJECT_DIR/venv/bin/python \
 #       -DPYTHON_INCLUDE_DIR=$PROJECT_DIR/venv/include/python2.7 \
-#       -DPYTHON_LIBRARY=/usr/local/lib/python2.7.11/lib/libpython2.7.so \
+#       -DPYTHON_LIBRARY=/usr/local/lib/python2.7.12/lib/libpython2.7.so \
 #       /opt/caffe
 # sudo make -j24 all
 # make install
