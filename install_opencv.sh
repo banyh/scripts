@@ -66,6 +66,7 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
 make -j24
 make install
 cd ../..
+ln -s /dev/null /dev/raw1394
 
 python -c "import cv2; print cv2.__version__"
 python3 -c "import cv2; print(cv2.__version__)"
