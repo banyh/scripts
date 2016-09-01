@@ -1,18 +1,6 @@
 # simple config for fish
 mkdir -p ~/.config/fish
-echo "alias ll 'ls -laFh'" > ~/.config/fish/config.fish
-echo "alias l 'ls -CF'" >> ~/.config/fish/config.fish
-echo "alias du 'du -h'" >> ~/.config/fish/config.fish
-echo "alias df 'df -h'" >> ~/.config/fish/config.fish
-echo "alias .. 'cd ..'" >> ~/.config/fish/config.fish
-echo "alias ... 'cd ../..'" >> ~/.config/fish/config.fish
-echo "alias vs 'rsub -p 52689'" >> ~/.config/fish/config.fish
-echo "alias sub 'rsub -p 52698'" >> ~/.config/fish/config.fish
-echo "" >> ~/.config/fish/config.fish
-echo "set -x LC_ALL en_US.UTF-8" >> ~/.config/fish/config.fish
-echo "set -x LC_CTYPE en_US.UTF-8" >> ~/.config/fish/config.fish
-echo 'set -x PATH /usr/local/lib/python2.7.12/bin /usr/local/lib/python3.5.2/bin $PATH' >> ~/.config/fish/config.fish
-#chsh --shell /usr/bin/fish
+cp config.fish ~/.config/fish/
 source ~/.config/fish/config.fish
 
 # set up jupyter notebook

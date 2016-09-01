@@ -1,10 +1,11 @@
 #!/bin/sh
 
+BASE_DIR=/media
 #
 # vGG Net pretrained models
 # http://www.robots.ox.ac.uk/%7Evgg/research/very_deep/
 #
-cd /data
+cd $BASE_DIR
 mkdir caffe
 cd caffe
 wget http://www.robots.ox.ac.uk/~vgg/software/very_deep/caffe/VGG_ILSVRC_16_layers.caffemodel
@@ -15,11 +16,12 @@ wget https://gist.githubusercontent.com/ksimonyan/3785162f95cd2d5fee77/raw/f02f8
 #
 # Tensorflow VGG16 and VGG19
 #
-cd /data
+cd $BASE_DIR
 mkdir tensorflow
 git clone https://github.com/machrisaa/tensorflow-vgg
 mv tensorflow-vgg vgg
-cd vgg
+mv vgg tensorflow
+cd tensorflow/vgg
 wget https://dl.dropboxusercontent.com/u/50333326/vgg16.npy
 wget https://dl.dropboxusercontent.com/u/50333326/vgg19.npy
 python test_vgg16.py
@@ -28,7 +30,7 @@ python test_vgg19.py
 #
 # Caffe reference model
 #
-cd /data/caffe
+cd $BASE_DIR/caffe
 wget http://dl.caffe.berkeleyvision.org/bvlc_reference_caffenet.caffemodel
 wget https://raw.githubusercontent.com/BVLC/caffe/master/models/bvlc_reference_caffenet/deploy.prototxt
 wget https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_mean.npy
@@ -36,7 +38,7 @@ wget https://github.com/BVLC/caffe/raw/master/python/caffe/imagenet/ilsvrc_2012_
 #
 # ResNet pretrained models
 #
-cd /data/caffe
+cd $BASE_DIR/caffe
 wget https://gliacloud.blob.core.windows.net/nlp/ResNet.tgz
 tar xzf ResNet.tgz
 rm ResNet.tgz
@@ -44,7 +46,7 @@ rm ResNet.tgz
 #
 # Tensorflow ResNet
 #
-cd /data/tensorflow
+cd $BASE_DIR/tensorflow
 wget https://gliacloud.blob.core.windows.net/nlp/tensorflow-resnet.tgz
 tar xvfz tensorflow-resnet.tgz
 rm tensorflow-resnet.tgz
@@ -55,6 +57,7 @@ python forward.py
 #
 # word vectors from word2vec
 #
+cd $BASE_DIR
 mkdir wordvec
 cd wordvec
 wget https://gliacloud.blob.core.windows.net/nlp/GoogleNews-vectors-negative300.bin.gz
@@ -86,7 +89,7 @@ cd ..
 #
 # Parsey's Cousins: A collection of pretrained syntactic models
 #
-cd /data
+cd $BASE_DIR/tensorflow
 mkdir parsey_universal
 cd parsey_universal
 wget http://download.tensorflow.org/models/parsey_universal/Ancient_Greek-PROIEL.zip
@@ -141,30 +144,17 @@ wget http://download.tensorflow.org/models/parsey_universal/Swedish-LinES.zip
 wget http://download.tensorflow.org/models/parsey_universal/Swedish.zip
 wget http://download.tensorflow.org/models/parsey_universal/Tamil.zip
 wget http://download.tensorflow.org/models/parsey_universal/Turkish.zip
-for f in *.zip; unzip $f; end for  # this is FISH syntax
-for dir in *; cd $dir; chmod 644 *; cd ..; end for
-chmod 755 *
+for file in $BASE_DIR/tensorflow/parsey_universal/*.zip
+do
+    unzip $file
+done
 rm *.zip
+for dir in *
+do
+    cd $dir
+    chmod 644 *
+    cd ..
+done
 
-#
-# SyntaxNet (installed as a normal user)
-#
-cd ~
-wget https://github.com/bazelbuild/bazel/releases/download/0.2.2b/bazel-0.2.2b-installer-linux-x86_64.sh
-chmod +x bazel-0.2.2b-installer-linux-x86_64.sh
-./bazel-0.2.2b-installer-linux-x86_64.sh --user
-rm bazel-0.2.2b-installer-linux-x86_64.sh
-set PATH $PATH ~/bin
-sudo apt-get -y install swig
-sudo pip install -U protobuf==3.0.0b2
-sudo pip install asciitree
-###
-git clone --recursive https://github.com/tensorflow/models.git
-cd models/syntaxnet/tensorflow
-./configure
-cd ..
-bazel test syntaxnet/... util/utf8/...
-cp syntaxnet/models/parsey_universal/*.sh .
-echo 'Bob brought the pizza to Alice.' | bash parse.sh /data/parsey_universal/English
-echo '球 從 天上 掉 下來' | bash parse.sh /data/parsey_universal/Chinese
-echo '球從天上掉下來' | bash tokenize_zh.sh
+chmod 755 $BASE_DIR/*
+chmod 755 $BASE_DIR/tensorflow/*
