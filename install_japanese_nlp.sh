@@ -36,16 +36,17 @@ tar xvfz pyknp-0.22.tar.gz
 rm pyknp-0.22.tar.gz
 cd pyknp-0.22
 python setup.py install
+python3 setup.py install
 cd ..
 
 #
 # Start Juman server on localhost
 #
-juman -S -N 12345
-python -c "from pyknp import Juman; juman = Juman(server='localhost', port=12345); print len(juman.analysis(u'これはペンです。'))"
+# juman -S -N 12345
+# python -c "from pyknp import Juman; juman = Juman(server='localhost', port=12345); print len(juman.analysis(u'これはペンです。'))"
 
 #
 # Start KNP server on localhost
 #
-knp -S -N 12344
-python -c "from pyknp import KNP; knp = KNP(server='localhost', port=12344); print len(knp.parse(u'これはペンです。'))"
+# knp -S -N 12344
+# python -c "from pyknp import KNP; knp = KNP(server='localhost', port=12344); print len(knp.parse(u'これはペンです。'))"

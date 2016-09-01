@@ -15,6 +15,9 @@ pip install scikit-image
 git clone https://github.com/BVLC/caffe
 cd caffe
 
+#
+# Install Caffe for Python2
+#
 mkdir build
 cd build
 cmake -DOpenCV_DIR=/usr/local/lib/python2.7.12/share/OpenCV \
@@ -28,10 +31,23 @@ make install
 
 cp -r install/python/caffe /usr/local/lib/python2.7.12/lib/python2.7/site-packages/
 cp install/lib/*.* /usr/local/lib/
-
 # make -j16 runtest  # optional
-cd ../..
+cd ..
 
+#
+# Install Caffe for Python3 (failed)
+#
+mkdir build2
+cd build2
+cmake -DOpenCV_DIR=/usr/local/lib/python3.5.2/share/OpenCV \
+      -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-7.5 \
+      -DUSE_OPENCV=1 \
+      -DPYTHON_EXECUTABLE=/usr/local/lib/python3.5.2/bin/python3 \
+      -DPYTHON_INCLUDE_DIR=/usr/local/lib/python3.5.2/include/python3.5m \
+      -DPYTHON_LIBRARY=/usr/local/lib/python3.5.2/lib/libpython3.5m.so \
+      ..
+make -j24 all
+cp -r install/python/caffe /usr/local/lib/python3.5.2/lib/python3.5/site-packages/
 
 ## Note: build for virtualenv
 # set PROJECT_DIR /home/banyhong/imgsent_demo
