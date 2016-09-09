@@ -151,9 +151,8 @@ done
 rm *.zip
 for dir in $BASE_DIR/tensorflow/parsey_universal/*
 do
-    cd $BASE_DIR/tensorflow/parsey_universal/$dir
+    cd $dir
     chmod 644 *
-    cd $BASE_DIR/tensorflow/parsey_universal
 done
 
 chmod 755 $BASE_DIR/*
