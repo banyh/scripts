@@ -22,6 +22,10 @@ sed -i "s/{{ secret_key }}/$SECRET_KEY/g" src/$PROJECT_NAME/settings/local.env
 echo "site_name: $PROJECT_NAME" > mkdocs.yml
 echo 'dev_addr: 0.0.0.0:8001' >> mkdocs.yml
 
+git init
+git add .
+git commit -m "first commit"
+
 cd src
 python manage.py migrate
 python manage.py runserver 0.0.0.0:8000

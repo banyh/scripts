@@ -1,3 +1,13 @@
+fallocate -l 4G /swapfile
+chmod 600 /swapfile
+mkswap /swapfile
+swapon /swapfile
+echo "/swapfile   none    swap    sw    0   0" >> /etc/fstab
+
+apt-get install -y htop sshfs \
+autotools-dev blt-dev bzip2 dpkg-dev g++-multilib gcc-multilib \
+libbluetooth-dev libbz2-dev libexpat1-dev libffi-dev libffi6 \
+libffi6-dbg libgdbm-dev libgpm2 libncursesw5-dev libreadline-dev \
 libsqlite3-dev libssl-dev libtinfo-dev mime-support net-tools \
 netbase python-crypto python-mox3 python-pil python-ply quilt \
 tk-dev zlib1g-dev libblas-dev liblapack-dev gfortran \
