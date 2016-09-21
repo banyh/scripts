@@ -11,6 +11,8 @@ set -x LC_ALL en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 set -x PATH /usr/local/lib/python2.7.12/bin /usr/local/lib/python3.5.2/bin $PATH
 
+git config --global user.name "banyh"
+git config --global user.email banyhong@gliacloud.com
 
 
 set normal (set_color normal)
