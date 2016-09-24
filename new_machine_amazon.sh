@@ -95,8 +95,11 @@ ln -sf /usr/local/bin/rmate /usr/local/bin/rsub
 chmod a+x /usr/local/bin/rmate
 
 chsh -s /usr/bin/fish ubuntu
+cp config.fish /home/ubuntu/
+su ubuntu
 mkdir -p /home/ubuntu/.config/fish
 cp config.fish /home/ubuntu/.config/fish/
-chown ubuntu:ubuntu /home/ubuntu/.config/fish/config.fish
+exit
+rm config.fish
 
 reboot
