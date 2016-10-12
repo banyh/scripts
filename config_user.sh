@@ -3,6 +3,13 @@ mkdir -p ~/.config/fish
 cp config.fish ~/.config/fish/
 source ~/.config/fish/config.fish
 
+mkdir ~/bin
+cd ~/bin
+git clone https://github.com/banyh/powerline-shell
+cd powerline-shell
+./install.py
+cd ~
+
 # set up jupyter notebook
 jupyter notebook --generate-config
 echo >> ~/.jupyter/jupyter_notebook_config.py
