@@ -8,6 +8,8 @@ cd ~/bin
 git clone https://github.com/banyh/powerline-shell
 cd powerline-shell
 ./install.py
+chmod +x installr.py
+./installr.py
 cd ~
 
 # set up jupyter notebook

@@ -12,5 +12,5 @@ cd tensorflow
 bazel build -c opt //tensorflow/tools/pip_package:build_pip_package
 # To build with GPU support:
 # bazel build -c opt --config=cuda //tensorflow/tools/pip_package:build_pip_package
-bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/package
-pip install ~/package/tensorflow-0.11.0rc0-py2-none-any.whl
+bazel-bin/tensorflow/tools/pip_package/build_pip_package ~/tensorflow_pkg
+pip install ~/tensorflow_pkg/tensorflow-0.11.0rc0-py2-none-any.whl
