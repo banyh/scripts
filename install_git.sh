@@ -1,13 +1,8 @@
-apt-get -y install build-essential libssl-dev libcurl4-gnutls-dev libexpat1-dev gettext unzip
-wget https://github.com/git/git/archive/v2.9.0.zip
-unzip v2.9.0.zip
-rm v2.9.0.zip
-cd git-2.9.0
-make prefix=/usr/local -j20 all
-make prefix=/usr/local install
-cd ..
-rm -rf git-2.9.0
+add-apt-repository ppa:git-core/ppa -y
+apt-get update
+apt-get install git -y
 
+git --version
 git config --global user.name "banyh"
 git config --global user.email banyhong@gliacloud.com
 
