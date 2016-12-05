@@ -25,8 +25,8 @@ cd ..
 make oldconfig < /dev/null
 make -j8 all
 make modules_install
-cp arch/x86_64/boot/bzImage /boot/vmlinuz-3.13.0-102-gpu
-cp /boot/System.map-3.13.0-100-generic /boot/System.map-3.13.0-102-gpu
-cp .config /boot/config-3.13.0-102-gpu
+cp arch/x86_64/boot/bzImage /boot/vmlinuz-3.13.0-200-gpu
+cp /boot/System.map-3.13.0-100-generic /boot/System.map-3.13.0-200-gpu
+cp .config /boot/config-3.13.0-200-gpu
 update-grub
 reboot
