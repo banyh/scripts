@@ -60,30 +60,16 @@ python forward.py
 cd $BASE_DIR
 mkdir wordvec
 cd wordvec
-wget https://gliacloud.blob.core.windows.net/nlp/GoogleNews-vectors-negative300.bin.gz
-gunzip GoogleNews-vectors-negative300.bin.gz
-wget https://gliacloud.blob.core.windows.net/nlp/jawiki.tar.gz
-tar xzf jawiki.tar.gz
-rm jawiki.tar.gz
-wget https://gliacloud.blob.core.windows.net/nlp/zhwiki_stanford.tar.gz
-tar xzf zhwiki_stanford.tar.gz
-rm zhwiki_stanford.tar.gz
-wget https://gliacloud.blob.core.windows.net/nlp/twwiki_stan_dict.tgz
-tar xzf twwiki_stan_dict.tgz
-rm twwiki_stan_dict.tgz
 
 #
 # word vectors from fasttext
 #
-wget https://gliacloud.blob.core.windows.net/nlp/twwiki_fasttext.tgz
-tar xzf twwiki_fasttext.tgz
-rm twwiki_fasttext.tgz
-wget https://gliacloud.blob.core.windows.net/nlp/enwiki_fasttext.tgz
-tar xzf enwiki_fasttext.tgz
-rm enwiki_fasttext.tgz
-wget https://gliacloud.blob.core.windows.net/nlp/jawiki_fasttext.tgz
-tar xzf jawiki_fasttext.tgz
-rm jawiki_fasttext.tgz
+wget https://gliacloud.blob.core.windows.net/word2vec/en.gensim
+wget https://gliacloud.blob.core.windows.net/word2vec/en.gensim.syn0.npy
+wget https://gliacloud.blob.core.windows.net/word2vec/ja.gensim
+wget https://gliacloud.blob.core.windows.net/word2vec/ja.gensim.syn0.npy
+wget https://gliacloud.blob.core.windows.net/word2vec/zh.gensim
+wget https://gliacloud.blob.core.windows.net/word2vec/zh.gensim.syn0.npy
 cd ..
 
 #

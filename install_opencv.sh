@@ -12,17 +12,14 @@ apt-get update
 apt-get -y install cmake
 apt-get -y upgrade
 
-wget https://github.com/Itseez/opencv/archive/3.1.0.zip
-unzip 3.1.0.zip
-rm 3.1.0.zip
-
 export PYTHON2_EXECUTABLE=/usr/local/lib/python2.7.12/bin/python
 export PYTHON2_LIBRARIES=/usr/local/lib/python2.7.12/lib/libpython2.7.so
 export PYTHON2_PACKAGES_PATH=/usr/local/lib/python2.7.12/lib/python2.7/site-packages/
 export PYTHON2_NUMPY_INCLUDE_DIRS=/usr/local/lib/python2.7.12/lib/python2.7/site-packages/numpy/core/include/
 export PYTHON2_INCLUDE_DIR=/usr/local/lib/python2.7.12/include/python2.7/
 
-cd opencv-3.1.0
+git clone https://github.com/opencv/opencv
+cd opencv
 mkdir build
 cd build
 
