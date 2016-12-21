@@ -55,3 +55,7 @@ pip3 install scikit-learn scikit-image matplotlib theano keras sk-video
 
 python -m ipykernel install --user
 python3 -m ipykernel install --user
+
+apt-get install -y libxml2-dev libxslt1-dev python-dev
+pip install lxml bs4 pymongo jupyter pulp
+pip3 install lxml bs4 pymongo jupyter pulp

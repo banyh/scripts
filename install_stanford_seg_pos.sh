@@ -18,3 +18,8 @@ git clone https://github.com/banyh/StanfordParserServer
 cd StanfordParserServer
 sh install.sh
 cd ..
+
+git clone https://github.com/banyh/StanfordNERServer
+cd StanfordNERServer
+sh install.sh
+cd ..
