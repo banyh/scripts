@@ -44,11 +44,11 @@ set -e PYTHON2_LIBRARIES
 set -e PYTHON2_PACKAGES_PATH
 set -e PYTHON2_NUMPY_INCLUDE_DIRS
 set -e PYTHON2_INCLUDE_DIR
-export PYTHON3_EXECUTABLE=/usr/local/lib/python3.5.2/bin/python3
-export PYTHON3_LIBRARIES=/usr/local/lib/python3.5.2/lib/libpython3.5m.so
-export PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.5.2/lib/python3.5/site-packages/
-export PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.5.2/lib/python3.5/site-packages/numpy/core/include/
-export PYTHON3_INCLUDE_DIR=/usr/local/lib/python3.5.2/include/python3.5m/
+export PYTHON3_EXECUTABLE=/usr/local/lib/python3.6.0/bin/python3
+export PYTHON3_LIBRARIES=/usr/local/lib/python3.6.0/lib/libpython3.5m.so
+export PYTHON3_PACKAGES_PATH=/usr/local/lib/python3.6.0/lib/python3.5/site-packages/
+export PYTHON3_NUMPY_INCLUDE_DIRS=/usr/local/lib/python3.6.0/lib/python3.5/site-packages/numpy/core/include/
+export PYTHON3_INCLUDE_DIR=/usr/local/lib/python3.6.0/include/python3.5m/
 
 #
 # build opencv for python 3
@@ -56,9 +56,9 @@ export PYTHON3_INCLUDE_DIR=/usr/local/lib/python3.5.2/include/python3.5m/
 cd ..
 mkdir build2
 cd build2
-export PYTHON_DEFAULT_EXECUTABLE=/usr/local/lib/python3.5.2/bin/python3
+export PYTHON_DEFAULT_EXECUTABLE=/usr/local/lib/python3.6.0/bin/python3
 cmake -D CMAKE_BUILD_TYPE=RELEASE \
-    -D CMAKE_INSTALL_PREFIX=/usr/local/lib/python3.5.2 \
+    -D CMAKE_INSTALL_PREFIX=/usr/local/lib/python3.6.0 \
     -D BUILD_opencv_python3=ON ..
 make -j24
 make install

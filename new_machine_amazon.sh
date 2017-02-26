@@ -44,29 +44,24 @@ hash -d python
 curl https://bootstrap.pypa.io/get-pip.py | python
 ln -sf /usr/local/lib/python2.7.12/bin/pip /usr/local/bin/pip
 
-# install python 3.5.2
-wget https://www.python.org/ftp/python/3.5.2/Python-3.5.2.tgz
-tar xfz Python-3.5.2.tgz
-rm -f Python-3.5.2.tgz
-cd Python-3.5.2/
-./configure --prefix /usr/local/lib/python3.5.2 --enable-ipv6 --enable-shared
+# install python 3.6.0
+wget https://www.python.org/ftp/python/3.6.0/Python-3.6.0.tgz
+tar xfz Python-3.6.0.tgz
+rm -f Python-3.6.0.tgz
+cd Python-3.6.0/
+./configure --prefix /usr/local/lib/python3.6.0 --enable-ipv6 --enable-shared
 make -j20
 make install
-echo "/usr/local/lib/python3.5.2/lib" > /etc/ld.so.conf.d/python3.conf
+echo "/usr/local/lib/python3.6.0/lib" > /etc/ld.so.conf.d/python3.conf
 ldconfig
 cd ..
-ln -sf /usr/local/lib/python3.5.2/bin/python3 /usr/local/bin/python3
+ln -sf /usr/local/lib/python3.6.0/bin/python3 /usr/local/bin/python3
 hash -d python3
 curl https://bootstrap.pypa.io/get-pip.py | python3
-ln -sf /usr/local/lib/python3.5.2/bin/pip3 /usr/local/bin/pip3
+ln -sf /usr/local/lib/python3.6.0/bin/pip3 /usr/local/bin/pip3
 
-# install tensorflow for python 2.7
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.10.0rc0-cp27-none-linux_x86_64.whl
-pip install --upgrade $TF_BINARY_URL
-
-# install tensorflow for python 3.5
-export TF_BINARY_URL=https://storage.googleapis.com/tensorflow/linux/cpu/tensorflow-0.10.0rc0-cp35-cp35m-linux_x86_64.whl
-pip3 install --upgrade $TF_BINARY_URL
+pip install tensorflow
+pip3 install tensorflow
 
 # install Python packages
 pip install scipy nltk gensim pandas jupyter django virtualenv mkdocs
