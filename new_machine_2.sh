@@ -28,4 +28,3 @@ chmod a+x /usr/local/bin/rmate
 sh install_opencv.sh
 sh install_boost.sh
 sh install_caffe.sh
-sh install_stanford_seg_pos.sh
