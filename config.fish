@@ -7,6 +7,7 @@ alias ... 'cd ../..'
 alias vs 'rsub -p 52689'
 alias sub 'rsub -p 52698'
 
+set -x STANFORD_NLP localhost:8080/nlp
 set -x LC_ALL en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 set -x PATH ~/bin /usr/local/lib/python2.7.13/bin /usr/local/lib/python3.6.1/bin $PATH

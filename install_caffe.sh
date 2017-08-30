@@ -20,11 +20,20 @@ cd caffe
 #
 mkdir build
 cd build
+# with GPU and CUDA
+cmake -DCPU_ONLY=0 -DUSE_OPENCV=0 \
+      -DPYTHON_EXECUTABLE=/usr/local/lib/python2.7.13/bin/python \
+      -DPYTHON_INCLUDE_DIR=/usr/local/lib/python2.7.13/include/python2.7 \
+      -DPYTHON_LIBRARY=/usr/local/lib/python2.7.13/lib/libpython2.7.so \
+      -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-8.0 \
+      ..
+# CPU only
 cmake -DCPU_ONLY=1 -DUSE_OPENCV=0 \
       -DPYTHON_EXECUTABLE=/usr/local/lib/python2.7.13/bin/python \
       -DPYTHON_INCLUDE_DIR=/usr/local/lib/python2.7.13/include/python2.7 \
       -DPYTHON_LIBRARY=/usr/local/lib/python2.7.13/lib/libpython2.7.so \
       ..
+
 make -j24 all
 make install
 
