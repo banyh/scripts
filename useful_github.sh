@@ -15,6 +15,6 @@ pip install git+ssh://git@github.com/livingbio/zhconvert.git
 pip install git+ssh://git@github.com/livingbio/gliacloud_api_client.git
 pip install git+ssh://git@github.com/livingbio/img2vec_service.git
 
-pip install git+ssh://git@github.com/livingbio/word2vec_service.git@jenkins
-pip install git+ssh://git@github.com/livingbio/parser_service.git@jenkins
+pip install git+ssh://git@github.com/livingbio/word2vec_service.git
+pip install git+ssh://git@github.com/livingbio/parser_service.git
 
