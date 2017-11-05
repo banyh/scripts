@@ -14,9 +14,13 @@ ln -s /usr/lib/nvidia-384/libEGL.so.384.90 /usr/lib/nvidia-384/libEGL.so.1
 ln -s /usr/lib32/nvidia-384/libEGL.so.384.90 /usr/lib32/nvidia-384/libEGL.so.1
 # -------------------------------------------------------------------------------
 
+wget https://s3-ap-northeast-1.amazonaws.com/gliacloud-package/cudnn_ubuntu_14.04/libcudnn5_5.1.10-1%2Bcuda8.0_amd64.deb
+wget https://s3-ap-northeast-1.amazonaws.com/gliacloud-package/cudnn_ubuntu_14.04/libcudnn6_6.0.21-1%2Bcuda8.0_amd64.deb
 wget https://s3-ap-northeast-1.amazonaws.com/gliacloud-package/cudnn_ubuntu_14.04/libcudnn5-dev_5.1.10-1%2Bcuda8.0_amd64.deb
 wget https://s3-ap-northeast-1.amazonaws.com/gliacloud-package/cudnn_ubuntu_14.04/libcudnn6-dev_6.0.21-1%2Bcuda8.0_amd64.deb
 
+dpkg -i libcudnn5_5.1.10-1+cuda8.0_amd64.deb
+dpkg -i libcudnn6_6.0.21-1+cuda8.0_amd64.deb
 dpkg -i libcudnn5-dev_5.1.10-1+cuda8.0_amd64.deb
 dpkg -i libcudnn6-dev_6.0.21-1+cuda8.0_amd64.deb
 
