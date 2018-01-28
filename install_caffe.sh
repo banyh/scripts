@@ -15,6 +15,13 @@ pip install scikit-image
 git clone https://github.com/BVLC/caffe
 cd caffe
 
+# 執行SENet時，需要下載自定義的layer並且compile
+git clone https://github.com/hujie-frank/SENet
+cd SENet
+cp -r include/ ..
+cp -r src/ ..
+cd ..
+
 #
 # Install Caffe for Python2
 # make runtest 並不是必需的，但花20分鐘跑完測試，可以避免之後出現奇怪的問題時，還得花時間debug
@@ -23,11 +30,12 @@ mkdir build2
 cd build2
 cmake -DPYTHON_EXECUTABLE=/usr/local/lib/python2.7.13/bin/python \
       -DPYTHON_INCLUDE_DIR=/usr/local/lib/python2.7.13/include/python2.7 \
-      -DPYTHON_LIBRARY=/usr/local/lib/python2.7.13/lib/libpython2.7.so ..
+      -DPYTHON_LIBRARY=/usr/local/lib/python2.7.13/lib/libpython2.7.so \
+      -DUSE_CUDNN=0 ..
 make -j8 all
 make pycaffe
-make install
 make -j8 runtest
+make install
 cp -r install/python/caffe /usr/local/lib/python2.7.13/lib/python2.7/site-packages/
 cp install/lib/*.* /usr/local/lib/
 
@@ -36,7 +44,8 @@ mkdir build3
 cd build3
 cmake -DPYTHON_EXECUTABLE=/usr/local/lib/python3.6.2/bin/python3 \
       -DPYTHON_INCLUDE_DIR=/usr/local/lib/python3.6.2/include/python3.6m \
-      -DPYTHON_LIBRARY=/usr/local/lib/python3.6.2/lib/libpython3.6m.so ..
+      -DPYTHON_LIBRARY=/usr/local/lib/python3.6.2/lib/libpython3.6m.so \
+      -DUSE_CUDNN=0 ..
 find . -type f -exec sed -i -e 's^libboost_python\.so^libboost_python3.so^g' '{}' \;
 make -j8 all
 make pycaffe
