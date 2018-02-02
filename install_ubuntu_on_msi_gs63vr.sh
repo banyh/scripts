@@ -16,7 +16,7 @@ apt-get install -y nvidia-384
 wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
 dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
 apt-get update
-apt-get install cuda
+apt-get install -y cuda
 wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb
 dpkg -i cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb
 
@@ -48,7 +48,8 @@ software-properties-common curl unzip
 # ----------------------------------------------------------------------------------------------
 add-apt-repository -y ppa:jonathonf/ffmpeg-3
 apt update
-apt upgrade
+apt upgrade -y
+apt-get -y install ffmpeg
 
 # ----------------------------------------------------------------------------------------------
 # Install python
@@ -110,39 +111,23 @@ apt-get install -y --no-install-recommends libboost-all-dev libopenblas-dev libl
 apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 pip install tensorflow-gpu
 pip3 install tensorflow-gpu
+pip install http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp27-cp27mu-linux_x86_64.whl
+pip install torchvision
+pip3 install http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl
+pip3 install torchvision
 
 # ----------------------------------------------------------------------------------------------
 # install boost
 # ----------------------------------------------------------------------------------------------
-wget http://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz
-tar xvfz boost_1_63_0.tar.gz
-rm -f boost_1_63_0.tar.gz
-cd boost_1_63_0/
-./bootstrap.sh --with-python=/usr/local/bin/python --with-python-root=/usr/local/lib/python2.7.13
-./b2 install threading=multi link=shared
-./bootstrap.sh --with-python=/usr/local/bin/python3 --with-python-version=3.6 --with-python-root=/usr/local/lib/python3.6.2
-./b2 --enable-unicode=ucs4 install threading=multi link=shared
-cd ..
+sh install_boost.sh
 
 # ----------------------------------------------------------------------------------------------
 # install caffe
 # ----------------------------------------------------------------------------------------------
-apt-get install -y libgflags-dev libgoogle-glog-dev liblmdb-dev cmake git gfortran
-cmake -DCPU_ONLY=0 -DUSE_OPENCV=0 -DUSE_CUDNN=1 -DBLAS=open \
-      -DPYTHON_EXECUTABLE=/usr/local/bin/python \
-      -DPYTHON_INCLUDE_DIR=/usr/local/lib/python2.7.13/include/python2.7 \
-      -DPYTHON_LIBRARY=/usr/local/lib/python2.7.13/lib/libpython2.7.so \
-      -DCUDA_TOOLKIT_ROOT_DIR=/usr/local/cuda-8.0 \
-      -DCUDNN_LIBRARY=/usr/lib/x86_64-linux-gnu/libcudnn.so.5 \
-      -DCUDNN_INCLUDE=/usr/include ..
-make all -j8
-make install
-cp -r install/python/caffe /usr/local/lib/python2.7.13/lib/python2.7/site-packages/
-cp install/lib/*.* /usr/local/lib/
-cd ..
+sh install_caffe.sh
 
 # ----------------------------------------------------------------------------------------------
-# install caffe
+# install pandoc
 # ----------------------------------------------------------------------------------------------
 wget https://github.com/jgm/pandoc/releases/download/2.0.3/pandoc-2.0.3-1-amd64.deb
 dpkg -i pandoc-2.0.3-1-amd64.deb

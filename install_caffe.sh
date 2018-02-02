@@ -11,6 +11,7 @@ apt-get -y install libgflags-dev libgoogle-glog-dev liblmdb-dev
 #apt-get -y install --no-install-recommends libboost-all-dev
 #apt-get -y install libopencv-dev
 pip install scikit-image
+pip3 install scikit-image
 
 git clone https://github.com/BVLC/caffe
 cd caffe
