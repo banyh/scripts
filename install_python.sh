@@ -69,3 +69,11 @@ pip install -U http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp27-cp27m
 pip install torchvision
 pip3 install -U http://download.pytorch.org/whl/cu90/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl
 pip3 install torchvision
+
+# Check if CUDA and CUDNN are correctly installed and used by pytorch
+python -c "from torch import cuda; print 'CUDA available:', cuda.is_available()"
+python -c "from torch import cuda; print 'CUDA device 0:', cuda.get_device_name(0)"
+python -c "from torch.backends import cudnn; print 'CUDNN version:', cudnn.version()"
+python3 -c "from torch import cuda; print('CUDA available:', cuda.is_available())"
+python3 -c "from torch import cuda; print('CUDA device 0:', cuda.get_device_name(0))"
+python3 -c "from torch.backends import cudnn; print('CUDNN version:', cudnn.version())"

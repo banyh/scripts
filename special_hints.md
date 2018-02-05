@@ -4,18 +4,17 @@
 ```
 GRUB_CMDLINE_LINUX_DEFAULT='pcie_port_pm=off acpi_backlight=none acpi_osi=Linux acpi_osi=! acpi_osi="Windows 2009"'
 ```
-先安裝一次Nvidia driver(動作A)，重開機後，設定主要顯示設備為 Intel Graphic
+重開機後，下載[網友修改過的prime-select](https://askubuntu.com/questions/879856/nvidia-prime-cant-switch-to-intel)
 ```
-prime-select intel
+cd /usr/bin
+mv prime-select prime-select.backup
+wget https://raw.githubusercontent.com/banyh/scripts/master/extra/prime-select
 ```
-再次重開機後，移除Nvidia driver再重新安裝(動作B)，並新增`/etc/ld.so.conf.d/nvidia.conf`內容如下：
+執行`prime-select intel`選擇 Intel Graphic Driver，然後確定EGL/GL driver都是指向mesa
 ```
-/usr/lib/nvidia-384
-/usr/lib32/nvidia-384
+update-alternatives --display x86_64-linux-gnu_egl_conf  # 第3行應該會顯示"目前連結指向 /usr/lib/x86_64-linux-gnu/mesa-egl/ld.so.conf"
+update-alternatives --display x86_64-linux-gnu_gl_conf   # 第3行應該會顯示"目前連結指向 /usr/lib/x86_64-linux-gnu/mesa/ld.so.conf"
 ```
-
-註：動作A可以改成安裝不同版本的 Nvidia driver，動作B可以改成安裝官方版本的 Nvidia driver。
-
 
 ## 如何使用嘸蝦米?
 
@@ -58,3 +57,14 @@ end
 ```
 最後設定 `set -x LOCATE_PATH /var/lib/mlocate/backup.db:/var/lib/mlocate/synology.db`
 
+## Beyond Compare 4 破解
+
+```
+sudo sed -i "s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g" /usr/lib/beyondcompare/BCompare
+```
+輸入下列的key
+```
+--- BEGIN LICENSE KEY ---
+GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDSvSIHLYhg1QkTxjCeSCk6ARz0ABJcnUmd3dZYJNWFyJun14rmGByRnVPL49QH+Rs0kjRGKCB-cb8IT4Gf0Ue9WMQ1A6t31MO9jmjoYUeoUmbeAQSofvuK8GN1rLRv7WXfUJ0uyvYlGLqzq1ZoJAJDyo0Kdr4ThF-IXcv2cxVyWVW1SaMq8GFosDEGThnY7C-SgNXW30jqAOgiRjKKRX9RuNeDMFqgP2cuf0NMvyMrMScnM1ZyiAaJJtzbxqN5hZOMClUTE+++
+--- END LICENSE KEY -----
+```
