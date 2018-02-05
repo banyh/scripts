@@ -5,3 +5,4 @@ tar xvfz install-tl-unx.tar.gz
 cd install-tl-20171121/
 ./install-tl
 export PATH=$PATH:/usr/local/texlive/2017/bin/x86_64-linux
+cd ..

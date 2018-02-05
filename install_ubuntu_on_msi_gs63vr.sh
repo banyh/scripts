@@ -20,17 +20,27 @@ apt-get install -y nvidia-384
 # wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/patches/2/cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb
 # dpkg -i cuda-repo-ubuntu1604-8-0-local-cublas-performance-update_8.0.61-1_amd64-deb
 
-# 下載CUDA 9.0
-wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
-wget https://developer.nvidia.com/compute/cuda/9.0/Prod/patches/1/cuda-repo-ubuntu1604-9-0-local-cublas-performance-update_1.0-1_amd64-deb
-dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
-apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+# 下載CUDA 9.0 (會強制安裝驅動程式 nvidia-384)
+# wget https://developer.nvidia.com/compute/cuda/9.0/Prod/local_installers/cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
+# wget https://developer.nvidia.com/compute/cuda/9.0/Prod/patches/1/cuda-repo-ubuntu1604-9-0-local-cublas-performance-update_1.0-1_amd64-deb
+# dpkg -i cuda-repo-ubuntu1604-9-0-local_9.0.176-1_amd64-deb
+# apt-key add /var/cuda-repo-9-0-local/7fa2af80.pub
+# apt-get update
+# apt-get install -y cuda
+# dpkg -i cuda-repo-ubuntu1604-9-0-local-cublas-performance-update_1.0-1_amd64-deb
+# apt -y autoremove
+
+# 下載CUDA 9.1並安裝 (會強制安裝驅動程式 nvidia-387)
+wget https://developer.nvidia.com/compute/cuda/9.1/Prod/local_installers/cuda-repo-ubuntu1604-9-1-local_9.1.85-1_amd64
+wget https://developer.nvidia.com/compute/cuda/9.1/Prod/patches/1/cuda-repo-ubuntu1604-9-1-local-cublas-performance-update-1_1.0-1_amd64
+dpkg -i cuda-repo-ubuntu1604-9-1-local_9.1.85-1_amd64
+apt-key add /var/cuda-repo-9-1-local/7fa2af80.pub
 apt-get update
 apt-get install -y cuda
-dpkg -i cuda-repo-ubuntu1604-9-0-local-cublas-performance-update_1.0-1_amd64-deb
+dpkg -i cuda-repo-ubuntu1604-9-1-local-cublas-performance-update-1_1.0-1_amd64
 apt -y autoremove
 
-# 安裝CUDNN 7.0 (如果安裝CUDA 9.0，則唯一能配對的版本是CUDNN 7.0)
+# 安裝CUDNN 7.0 (如果安裝CUDA 9.x，則唯一能配對的版本是CUDNN 7.0)
 wget https://storage.googleapis.com/gliacloud-package/cudnn_ubuntu_16.04/libcudnn7_7.0.5.15-1%2Bcuda9.0_amd64.deb
 wget https://storage.googleapis.com/gliacloud-package/cudnn_ubuntu_16.04/libcudnn7-dev_7.0.5.15-1%2Bcuda9.0_amd64.deb
 
@@ -75,25 +85,12 @@ sh install_caffe.sh
 # ----------------------------------------------------------------------------------------------
 # install pandoc
 # ----------------------------------------------------------------------------------------------
-wget https://github.com/jgm/pandoc/releases/download/2.0.3/pandoc-2.0.3-1-amd64.deb
-dpkg -i pandoc-2.0.3-1-amd64.deb
-wget http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz
-tar xvfz install-tl-unx.tar.gz
-cd $(ls -d install-tl-2*)
-./install-tl
-export PATH=$PATH:/usr/local/texlive/2017/bin/x86_64-linux
-cd ..
+sh install_pandoc.sh
 
 # ----------------------------------------------------------------------------------------------
 # install docker
 # ----------------------------------------------------------------------------------------------
-apt-get update
-apt-get install apt-transport-https ca-certificates curl software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-apt-key fingerprint 0EBFCD88
-add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-apt-get update
-apt-get install -y docker-ce
+sh install_docker.sh
 
 # ----------------------------------------------------------------------------------------------
 # install mongodb
