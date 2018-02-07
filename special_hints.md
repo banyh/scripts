@@ -19,7 +19,7 @@ GRUB_CMDLINE_LINUX_DEFAULT='pcie_port_pm=off acpi_backlight=none acpi_osi=Linux 
 # Required-Start:    $all
 # Required-Stop:     $all
 # Default-Start:     5
-# Default-Stop:      6
+# Default-Stop:      0 6
 # Short-Description: unload nvidia library
 # Description:       unload nvidia library
 ### END INIT INFO
@@ -49,7 +49,7 @@ case "$1" in
 esac
 ```
 
-4. 執行`update-rc.d nvidia defaults`，應該會自動在`/etc/rc5.d`建立`SXXnvidia`的連結，並在`/etc/rc6.d`建立`KXXnvidia`的連結
+4. 執行`update-rc.d nvidia defaults`，應該會自動在`/etc/rc5.d`建立`SXXnvidia`的連結，並在`/etc/rc0.d`、`/etc/rc6.d`建立`KXXnvidia`的連結
 
 5. 測試一下，執行`/etc/init.d/nvidia stop`後，再執行`nvidia-smi`就會出現找不到library的錯誤。執行`/etc/init.d/nvidia start`後，再執行`nvidia-smi`就可以看到正常的GPU狀態。當測試沒問題後就可以重新開機
 
