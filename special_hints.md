@@ -132,3 +132,14 @@ echo ".CodeMirror { font-size: 18px; }" > ~/.jupyter/custom/custom.css
 echo ".container { width: 90%; }" >> ~/.jupyter/custom/custom.css
 echo ".output_text { font-size: 18px; }"  >> ~/.jupyter/custom/custom.css
 ```
+
+## 掛載Diskstation的NFS4
+
+前置作業
+1. `apt-get install nfs-common`
+2. 修改`/etc/idmapd.conf`，在`[general]`區段新增一行`Domain = bany`
+3. 修改`/etc/fstab`，新增以下兩行
+```
+192.168.1.150:/volume1/Bany              /diskstation/Bany   nfs    bg,soft,rw,noexec,nodev,nosuid,timeo=1200 0 2
+192.168.1.150:/volume1/Family            /diskstation/Family nfs    bg,soft,rw,noexec,nodev,nosuid,timeo=1200 0 2
+```
