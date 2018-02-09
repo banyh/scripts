@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Python3
+Comment=Python3 QtConsole
+Keywords=python;qt;py;
+Path=/data
+Exec=jupyter3 qtconsole
+StartupNotify=false
+Terminal=false
+Type=Application
+Icon=Python
+Categories=Development;IDE;

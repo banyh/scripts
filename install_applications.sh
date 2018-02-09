@@ -56,6 +56,8 @@ sed -i "s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29
 apt install -y compizconfig-settings-manager compiz-plugins-extra unity-tweak-tool gnome-tweak-tool
 
 # Nemo檔案管理
+add-apt-repository -y ppa:webupd8team/nemo3
+apt-get update
 apt install -y nemo
 
 # MComix看漫畫

@@ -22,7 +22,7 @@ dpkg -i libcudnn7-dev_7.0.5.15-1+cuda9.0_amd64.deb
 # ----------------------------------------------------------------------------------------------
 # Install dependencies
 # ----------------------------------------------------------------------------------------------
-apt-get install -y htop sshfs libopenblas-dev fish \
+apt-get install -y htop sshfs libopenblas-dev \
 autotools-dev blt-dev bzip2 dpkg-dev g++-multilib gcc-multilib \
 libbluetooth-dev libbz2-dev libexpat1-dev libffi-dev libffi6 \
 libffi6-dbg libgdbm-dev libgpm2 libncursesw5-dev libreadline-dev \
@@ -30,6 +30,10 @@ libsqlite3-dev libssl-dev libtinfo-dev mime-support net-tools \
 netbase python-crypto python-mox3 python-pil python-ply quilt \
 tk-dev zlib1g-dev libblas-dev liblapack-dev gfortran \
 software-properties-common curl unzip
+
+wget https://launchpad.net/~fish-shell/+archive/ubuntu/release-2/+files/fish_2.7.1-1~xenial_amd64.deb
+wget https://launchpad.net/~fish-shell/+archive/ubuntu/release-2/+files/fish-common_2.7.1-1~xenial_all.deb
+dpkg -i fish_2.7.1-1~xenial_amd64.deb fish-common_2.7.1-1~xenial_all.deb
 
 # ----------------------------------------------------------------------------------------------
 # Install ffmpeg
