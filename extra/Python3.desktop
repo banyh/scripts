@@ -1,11 +1,14 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=Python3
 Comment=Python3 QtConsole
 Keywords=python;qt;py;
 Path=/data
-Exec=jupyter3 qtconsole
+Exec=/usr/local/lib/python3.6.2/bin/jupyter3 qtconsole
 StartupNotify=false
 Terminal=false
 Type=Application
 Icon=Python
 Categories=Development;IDE;
+X-Desktop-File-Install-Version=0.22
+Icon[zh_TW]=/var/lib/app-info/icons/ubuntu-xenial-universe/64x64/ipython3_ipython3.png

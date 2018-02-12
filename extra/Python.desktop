@@ -1,11 +1,14 @@
+#!/usr/bin/env xdg-open
 [Desktop Entry]
 Name=Python2
 Comment=Python2 QtConsole
 Keywords=python;qt;py;
 Path=/data
-Exec=jupyter qtconsole
+Exec=/usr/local/lib/python2.7.13/bin/jupyter qtconsole
 StartupNotify=false
 Terminal=false
 Type=Application
 Icon=Python
 Categories=Development;IDE;
+X-Desktop-File-Install-Version=0.22
+Icon[zh_TW]=/var/lib/app-info/icons/ubuntu-xenial-universe/64x64/ipython_ipython.png
