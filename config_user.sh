@@ -1,6 +1,6 @@
 # simple config for fish
 mkdir -p ~/.config/fish
-cd .config/fish
+cd ~/.config/fish
 wget https://raw.githubusercontent.com/banyh/scripts/master/extra/config.fish
 source ~/.config/fish/config.fish
 cd ~

@@ -15,7 +15,7 @@ GRUB_CMDLINE_LINUX_DEFAULT='pcie_port_pm=off acpi_backlight=none acpi_osi=Linux 
 ```
 #!/bin/sh
 ### BEGIN INIT INFO
-# Provides:          nvidia 
+# Provides:          nvidia
 # Required-Start:    $all
 # Required-Stop:     $all
 # Default-Start:     5
@@ -143,3 +143,45 @@ echo ".output_text { font-size: 18px; }"  >> ~/.jupyter/custom/custom.css
 192.168.1.150:/volume1/Bany              /diskstation/Bany   nfs    bg,soft,rw,noexec,nodev,nosuid,timeo=1200 0 2
 192.168.1.150:/volume1/Family            /diskstation/Family nfs    bg,soft,rw,noexec,nodev,nosuid,timeo=1200 0 2
 ```
+
+## 讓HDMI可以輸出聲音
+
+資料來源: https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1377653/comments/19
+
+1. 新增檔案`/etc/systemd/system/fix-hdmi-audio.service`，其內容如下：
+
+```
+[Unit]
+Description=nVidia HDMI Audio Fixer
+Before=systemd-logind.service display-manager.service
+After=module-init-tools.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/fix-hdmi-audio.sh
+
+[Install]
+WantedBy=multi-user.target
+```
+
+2. 新增檔案`/usr/local/bin/fix-hdmi-audio.sh`，其內容如下：
+
+```
+#!/bin/sh
+setpci -s 01:00.0 0x488.l=0x2000000:0x2000000
+rmmod nvidia-uvm nvidia-drm nvidia-modeset nvidia
+sh -c 'echo 1 > /sys/bus/pci/devices/0000:01:00.0/remove'
+sh -c 'echo 1 > /sys/bus/pci/devices/0000:00:01.0/rescan'
+modprobe nvidia nvidia-modeset nvidia-drm nvidia-uvm
+```
+
+3. 設定為可執行: `chmod +x /usr/local/bin/fix-hdmi-audio.sh`
+
+4. 啟動service: `systemctl enable fix-hdmi-audio.service`
+
+5. 安裝pulseaudio音量控制: `apt install pavucontrol`，執行PulseAudio Volume Control，
+    這時在Configuration的頁面，只會看到`內部音效`
+
+6. 重開機後，插上HDMI後播放音樂，然後打開PulseAudio Volume Control。
+    在Configuration的頁面，應該可以看到`內部音效`及`HDA NVidia`，而且`HDA NVidia`已經設為`Digital Stereo (HDMI) Output`。
+    在Playback的頁面，音樂播放器的右邊可以看到一個按鈕，可以選擇`內部音效`或是`HDA NVidia`，選擇`HDA NVidia`後聲音就會從HDMI出來。
