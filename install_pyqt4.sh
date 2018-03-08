@@ -14,7 +14,7 @@ make install  # needs root
 # ----------------------------------------------------------------------------------------------
 # install QT4
 # ----------------------------------------------------------------------------------------------
-apt install qt4-qmake gnome-themes-standard gtk2-engines-adwaita
+apt-get install -y qt4-default qt4-qmake gnome-themes-standard
 wget "http://sourceforge.net/projects/pyqt/files/PyQt4/PyQt-4.12.1/PyQt4_gpl_x11-4.12.1.tar.gz"
 tar xzf PyQt4_gpl_x11-4.12.1.tar.gz
 cd PyQt4_gpl_x11-4.12.1

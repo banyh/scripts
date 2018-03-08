@@ -185,3 +185,13 @@ modprobe nvidia nvidia-modeset nvidia-drm nvidia-uvm
 6. 重開機後，插上HDMI後播放音樂，然後打開PulseAudio Volume Control。
     在Configuration的頁面，應該可以看到`內部音效`及`HDA NVidia`，而且`HDA NVidia`已經設為`Digital Stereo (HDMI) Output`。
     在Playback的頁面，音樂播放器的右邊可以看到一個按鈕，可以選擇`內部音效`或是`HDA NVidia`，選擇`HDA NVidia`後聲音就會從HDMI出來。
+
+## 讓ssh不要自動斷線
+
+修改`/etc/ssh/sshd_config`，新增下面兩行
+```
+ClientAliveInterval 30
+ClientAliveCountMax 6
+```
+
+表示每隔30秒，ssh service會發送heartbeat給client，如果連續6次(180秒)都沒有回應，才會斷線。

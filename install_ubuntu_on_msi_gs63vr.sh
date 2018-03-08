@@ -11,7 +11,7 @@ wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/c
 dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
 apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
 apt-get update
-apt-get install cuda-9-0
+apt-get install -y cuda-9-0
 
 # 安裝CUDNN 7.0 (如果安裝CUDA 9.x，則唯一能配對的版本是CUDNN 7.0)
 wget https://storage.googleapis.com/gliacloud-package/cudnn_ubuntu_16.04/libcudnn7_7.0.5.15-1%2Bcuda9.0_amd64.deb
@@ -44,9 +44,16 @@ apt upgrade -y
 apt-get -y install ffmpeg
 
 # ----------------------------------------------------------------------------------------------
+# Install git
+# ----------------------------------------------------------------------------------------------
+sh install_git.sh
+
+# ----------------------------------------------------------------------------------------------
 # Install python
 # ----------------------------------------------------------------------------------------------
 sh install_python.sh
+sh install_pyqt4.sh
+sh install_opencv.sh
 
 # ----------------------------------------------------------------------------------------------
 # install boost
@@ -66,7 +73,7 @@ sh install_docker.sh
 # ----------------------------------------------------------------------------------------------
 # install mongodb
 # ----------------------------------------------------------------------------------------------
-sh install mongodb
+sh install_mongodb.sh
 
 # ----------------------------------------------------------------------------------------------
 # install pandoc
