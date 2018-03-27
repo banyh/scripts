@@ -58,6 +58,9 @@ pip3 install lxml bs4 pymongo pulp gevent crcmod autopep8 flashtext spacy
 apt-get install -y --no-install-recommends libboost-all-dev libopenblas-dev liblapack-dev
 apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 
+pip install lightgbm --install-option=--gpu --install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
+pip3 install lightgbm --install-option=--gpu --install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
+
 pip install tensorflow-gpu keras h5py
 pip3 install tensorflow-gpu keras h5py
 

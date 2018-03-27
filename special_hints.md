@@ -195,3 +195,37 @@ ClientAliveCountMax 6
 ```
 
 表示每隔30秒，ssh service會發送heartbeat給client，如果連續6次(180秒)都沒有回應，才會斷線。
+
+## 安裝Python Gtk Package
+
+```
+apt install libgirepository1.0-dev gobject-introspection
+pip install pygobject
+pip3 install pygobject
+```
+
+範例：利用Gtk截圖
+```
+import gi
+gi.require_version('Gtk', '3.0')
+from gi.repository import Gdk
+
+# full screenshot
+window = Gdk.get_default_root_window()
+pb = Gdk.pixbuf_get_from_window(window, *window.get_geometry())
+pb.savev("full.png", "png", (), ())
+
+# screenshots for all windows
+window = Gdk.get_default_root_window()
+screen = window.get_screen()
+typ = window.get_type_hint()
+for i, w in enumerate(screen.get_window_stack()):
+    pb = Gdk.pixbuf_get_from_window(w, *w.get_geometry())
+    pb.savev("{}.png".format(i), "png", (), ())
+
+# screenshot active window
+screen = Gdk.get_default_root_window().get_screen()
+w = screen.get_active_window()
+pb = Gdk.pixbuf_get_from_window(w, *w.get_geometry())
+pb.savev("active.png", "png", (), ())
+```
