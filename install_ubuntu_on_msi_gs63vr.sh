@@ -29,11 +29,12 @@ libffi6-dbg libgdbm-dev libgpm2 libncursesw5-dev libreadline-dev \
 libsqlite3-dev libssl-dev libtinfo-dev mime-support net-tools \
 netbase python-crypto python-mox3 python-pil python-ply quilt \
 tk-dev zlib1g-dev libblas-dev liblapack-dev gfortran \
-software-properties-common curl unzip
+software-properties-common curl unzip cmake
 
 wget https://launchpad.net/~fish-shell/+archive/ubuntu/release-2/+files/fish_2.7.1-1~xenial_amd64.deb
 wget https://launchpad.net/~fish-shell/+archive/ubuntu/release-2/+files/fish-common_2.7.1-1~xenial_all.deb
 dpkg -i fish_2.7.1-1~xenial_amd64.deb fish-common_2.7.1-1~xenial_all.deb
+apt -f install -y
 
 # ----------------------------------------------------------------------------------------------
 # Install ffmpeg

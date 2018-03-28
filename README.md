@@ -1,4 +1,4 @@
-## Setup up TensorFlow and Caffe environment on Ubuntu 14.04 with a GPU
+## Setup up Deep Learning environment on Ubuntu 16.04 with a GPU
 
 ### Checkout this repository
 
@@ -10,12 +10,6 @@ cd scripts-master
 chmod +x *.sh
 ```
 
-## For `g2x.large` on Amazon EC2
+### Setup the environment
 
-Following scripts are runned as ROOT.
-
-```shell-script
-sh install_compile_kernel.sh  # then reboot
-sh install_k520_driver.sh  # then reboot
-sh new_machine_amazon_gpu.sh
-```
+Run instructions in `install_ubuntu_on_msi_gs63vr.sh`.
