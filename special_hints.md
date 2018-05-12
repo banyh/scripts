@@ -62,9 +62,14 @@ GLib-CRITICAL **: g_strsplit: assertion 'string != NULL' failedv
 
 ## 如何使用嘸蝦米?
 
+如果是Ubuntu 18.04，預設沒有安裝fcitx，需要安裝fcitx並且**重開機**才會生效。
+```
+sudo apt install -y fcitx fcitx-config-common fcitx-ui-qimpanel
+```
+
 設定 --> 系統設定 (System Settings) --> 語言支援（Language Support）中，下面的鍵盤輸入法系統 (Keyboard input method system) 選擇`fcitx`，然後安裝嘸蝦米
 ```
-sudo apt install fcitx-table-boshiamy
+sudo apt install -y fcitx-table-boshiamy
 ```
 安裝後，在fcitx的設定中新增嘸蝦米輸入法，然後下載以下檔案
 ```

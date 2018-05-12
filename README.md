@@ -10,6 +10,8 @@ cd scripts-master
 chmod +x *.sh
 ```
 
+Note: You can use `https://tinyurl.com/banyscript` to replace `https://github.com/banyh/scripts/archive/master.zip`, like `wget https://tinyurl.com/banyscript -O master.zip`
+
 ### Setup the environment
 
 Run instructions in `install_ubuntu_on_msi_gs63vr.sh`.
