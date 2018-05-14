@@ -9,8 +9,8 @@ wget "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd
 dpkg -i dropbox_2015.10.28_amd64.deb
 
 # Slack
-wget "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.0.5-amd64.deb"
-dpkg -i slack-desktop-3.0.5-amd64.deb
+wget "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.0-beta25a7a50e-amd64.deb"
+dpkg -i slack-desktop-3.2.0-beta25a7a50e-amd64.deb
 
 # Visual Studio Code
 wget "https://go.microsoft.com/fwlink/?LinkID=760868" -O code.deb
