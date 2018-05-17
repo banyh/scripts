@@ -7,6 +7,15 @@ fi
 
 case "$1" in
   backup)
+    mkdir -p $BACKUP_DIR/etc
+    cp /etc/updatedb.conf $BACKUP_DIR/etc
+    cp /etc/idmapd.conf $BACKUP_DIR/etc
+    cp /etc/ssh/sshd_config $BACKUP_DIR/etc
+    cp /etc/ld.so.conf.d/nvidia.conf $BACKUP_DIR/etc
+    cp /etc/default/grub $BACKUP_DIR/etc
+    cp /etc/init.d/nvidia $BACKUP_DIR/etc
+    cp /etc/fstab $BACKUP_DIR/etc
+
     mkdir -p $BACKUP_DIR/vscode
     cp ~/.config/Code/User/settings.json $BACKUP_DIR/vscode
     cp ~/.config/Code/User/keybindings.json $BACKUP_DIR/vscode
@@ -16,6 +25,10 @@ case "$1" in
 
     mkdir -p $BACKUP_DIR/variety
     cp ~/.config/variety/*.conf $BACKUP_DIR/variety
+
+    mongodump --db=raw_text --collection=zh_wiki --gzip --archive=$BACKUP_DIR/zh_wiki
+    mongodump --db=raw_text --collection=zh_news --gzip --archive=$BACKUP_DIR/zh_news
+    mongodump --db=twse_daily --gzip --archive=$BACKUP_DIR/twse_daily
     ;;
   restore)
     mkdir -p ~/.config/Code/User
@@ -27,6 +40,10 @@ case "$1" in
 
     mkdir -p ~/.config/variety
     cp $BACKUP_DIR/variety/* ~/.config/variety
+
+    mongorestore --db=raw_text --gzip --archive=$BACKUP_DIR/zh_wiki
+    mongorestore --db=raw_text --gzip --archive=$BACKUP_DIR/zh_news
+    mongorestore --db=twse_daily --gzip --archive=$BACKUP_DIR/twse_daily
     ;;
   *)
     echo "Usage: backup_and_restore.sh (backup|restore)"
