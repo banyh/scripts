@@ -1,6 +1,6 @@
 #!/bin/sh
 
-PYTHON2_VERSION=2.7.13
+PYTHON2_VERSION=2.7.15
 wget https://www.python.org/ftp/python/${PYTHON2_VERSION}/Python-${PYTHON2_VERSION}.tgz
 tar xfz Python-${PYTHON2_VERSION}.tgz
 rm -f Python-${PYTHON2_VERSION}.tgz
@@ -19,7 +19,7 @@ ln -sf /usr/local/lib/python${PYTHON2_VERSION}/bin/pip /usr/local/bin/pip
 pip install ipython
 ln -sf /usr/local/lib/python${PYTHON2_VERSION}/bin/ipython /usr/local/bin/ipython
 
-PYTHON3_VERSION=3.6.2
+PYTHON3_VERSION=3.6.6
 wget https://www.python.org/ftp/python/${PYTHON3_VERSION}/Python-${PYTHON3_VERSION}.tgz
 tar xfz Python-${PYTHON3_VERSION}.tgz
 rm -f Python-${PYTHON3_VERSION}.tgz
@@ -64,14 +64,9 @@ pip3 install lightgbm --install-option=--gpu --install-option="--opencl-include-
 pip install tensorflow-gpu keras h5py
 pip3 install tensorflow-gpu keras h5py
 
-# pip install -U http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp27-cp27mu-linux_x86_64.whl
-# pip install torchvision
-# pip3 install -U http://download.pytorch.org/whl/cu80/torch-0.3.0.post4-cp36-cp36m-linux_x86_64.whl
-# pip3 install torchvision
-
-pip install -U http://download.pytorch.org/whl/cu90/torch-0.3.1-cp27-cp27mu-linux_x86_64.whl
+pip install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp27-cp27mu-linux_x86_64.whl
 pip install torchvision
-pip3 install -U http://download.pytorch.org/whl/cu90/torch-0.3.1-cp36-cp36m-linux_x86_64.whl
+pip3 install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp35-cp35m-linux_x86_64.whl
 pip3 install torchvision
 
 # Check if CUDA and CUDNN are correctly installed and used by pytorch
