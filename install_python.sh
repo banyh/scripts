@@ -64,10 +64,10 @@ pip3 install lightgbm --install-option=--gpu --install-option="--opencl-include-
 pip install tensorflow-gpu keras h5py
 pip3 install tensorflow-gpu keras h5py
 
-pip install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp27-cp27mu-linux_x86_64.whl
-pip install torchvision
-pip3 install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp35-cp35m-linux_x86_64.whl
-pip3 install torchvision
+# pip install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp27-cp27mu-linux_x86_64.whl
+pip install torchvision  # also install pytorch
+# pip3 install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp36-cp36m-linux_x86_64.whl
+pip3 install torchvision  # also install pytorch
 
 # Check if CUDA and CUDNN are correctly installed and used by pytorch
 python -c "from torch import cuda; print 'CUDA available:', cuda.is_available()"
