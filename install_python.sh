@@ -1,42 +1,44 @@
 #!/bin/sh
 
 PYTHON2_VERSION=2.7.15
-wget https://www.python.org/ftp/python/${PYTHON2_VERSION}/Python-${PYTHON2_VERSION}.tgz
-tar xfz Python-${PYTHON2_VERSION}.tgz
-rm -f Python-${PYTHON2_VERSION}.tgz
-cd Python-${PYTHON2_VERSION}/
-./configure --prefix /usr/local/lib/python${PYTHON2_VERSION} --enable-ipv6 --enable-shared --enable-unicode=ucs4 --enable-loadable-sqlite-extensions --with-zlib
+PYTHON3_VERSION=3.6.6
+
+wget https://www.python.org/ftp/python/$PYTHON2_VERSION/Python-$PYTHON2_VERSION.tgz
+tar xfz Python-$PYTHON2_VERSION.tgz
+rm -f Python-$PYTHON2_VERSION.tgz
+cd Python-$PYTHON2_VERSION/
+./configure --prefix /usr/local/lib/python$PYTHON2_VERSION --enable-ipv6 --enable-shared --enable-unicode=ucs4 --enable-loadable-sqlite-extensions --with-zlib
 make -j20
 make install
-echo "/usr/local/lib/python${PYTHON2_VERSION}/lib" > /etc/ld.so.conf.d/python2.conf
+echo "/usr/local/lib/python$PYTHON2_VERSION/lib" > /etc/ld.so.conf.d/python2.conf
 ldconfig
 cd ..
-ln -sf /usr/local/lib/python${PYTHON2_VERSION}/bin/python /usr/local/bin/python
-ln -sf /usr/local/lib/python${PYTHON2_VERSION}/bin/python /usr/local/bin/python2
+ln -sf /usr/local/lib/python$PYTHON2_VERSION/bin/python /usr/local/bin/python
+ln -sf /usr/local/lib/python$PYTHON2_VERSION/bin/python /usr/local/bin/python2
 hash -d python
 curl https://bootstrap.pypa.io/get-pip.py | python
-ln -sf /usr/local/lib/python${PYTHON2_VERSION}/bin/pip /usr/local/bin/pip
+ln -sf /usr/local/lib/python$PYTHON2_VERSION/bin/pip /usr/local/bin/pip
 pip install ipython
-ln -sf /usr/local/lib/python${PYTHON2_VERSION}/bin/ipython /usr/local/bin/ipython
+ln -sf /usr/local/lib/python$PYTHON2_VERSION/bin/ipython /usr/local/bin/ipython
 
-PYTHON3_VERSION=3.6.6
-wget https://www.python.org/ftp/python/${PYTHON3_VERSION}/Python-${PYTHON3_VERSION}.tgz
-tar xfz Python-${PYTHON3_VERSION}.tgz
-rm -f Python-${PYTHON3_VERSION}.tgz
-cd Python-${PYTHON3_VERSION}/
-./configure --prefix /usr/local/lib/python${PYTHON3_VERSION} --enable-ipv6 --enable-shared --enable-loadable-sqlite-extensions --with-zlib
+wget https://www.python.org/ftp/python/$PYTHON3_VERSION/Python-$PYTHON3_VERSION.tgz
+tar xfz Python-$PYTHON3_VERSION.tgz
+rm -f Python-$PYTHON3_VERSION.tgz
+cd Python-$PYTHON3_VERSION/
+./configure --prefix /usr/local/lib/python$PYTHON3_VERSION --enable-ipv6 --enable-shared --enable-loadable-sqlite-extensions --with-zlib
 make -j20
 make install
-echo "/usr/local/lib/python${PYTHON3_VERSION}/lib" > /etc/ld.so.conf.d/python3.conf
+echo "/usr/local/lib/python$PYTHON3_VERSION/lib" > /etc/ld.so.conf.d/python3.conf
 ldconfig
 cd ..
-ln -sf /usr/local/lib/python${PYTHON3_VERSION}/bin/python3 /usr/local/bin/python3
-ln -sf /usr/local/lib/python${PYTHON3_VERSION}/bin/jupyter /usr/local/lib/python${PYTHON3_VERSION}/bin/jupyter3
+ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/python3 /usr/local/bin/python3
+ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/virtualenv /usr/local/bin/virtualenv
+ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/jupyter /usr/local/lib/python$PYTHON3_VERSION/bin/jupyter3
 hash -d python3
 curl https://bootstrap.pypa.io/get-pip.py | python3
-ln -sf /usr/local/lib/python${PYTHON3_VERSION}/bin/pip3 /usr/local/bin/pip3
+ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/pip3 /usr/local/bin/pip3
 pip install ipython
-ln -sf /usr/local/lib/python${PYTHON3_VERSION}/bin/ipython3 /usr/local/bin/ipython3
+ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/ipython3 /usr/local/bin/ipython3
 
 # ----------------------------------------------------------------------------------------------
 # install Python packages
@@ -65,9 +67,9 @@ pip install tensorflow-gpu keras h5py
 pip3 install tensorflow-gpu keras h5py
 
 pip install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp27-cp27mu-linux_x86_64.whl
-pip install torchvision  # also install pytorch
+pip install torchvision
 pip3 install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp36-cp36m-linux_x86_64.whl
-pip3 install torchvision  # also install pytorch
+pip3 install torchvision
 
 # Check if CUDA and CUDNN are correctly installed and used by pytorch
 python -c "from torch import cuda; print 'CUDA available:', cuda.is_available()"

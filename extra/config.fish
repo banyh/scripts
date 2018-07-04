@@ -10,7 +10,7 @@ alias delh 'echo all | history --delete --prefix locate & echo 1 | history --del
 
 set -x LC_ALL en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
-set -x PATH ~/bin /usr/local/lib/python2.7.13/bin /usr/local/lib/python3.6.2/bin $PATH /usr/local/texlive/2017/bin/x86_64-linux
+set -x PATH ~/bin /usr/local/lib/python2.7.15/bin /usr/local/lib/python3.6.6/bin $PATH /usr/local/texlive/2017/bin/x86_64-linux
 # set -x LOCATE_PATH /var/lib/mlocate/backup.db:/var/lib/mlocate/synology.db
 
 # git config --global user.name "banyh"

@@ -29,6 +29,7 @@ case "$1" in
     mongodump --db=raw_text --collection=zh_wiki --gzip --archive=$BACKUP_DIR/zh_wiki
     mongodump --db=raw_text --collection=zh_news --gzip --archive=$BACKUP_DIR/zh_news
     mongodump --db=twse_daily --gzip --archive=$BACKUP_DIR/twse_daily
+    mongodump --db=imgsent --gzip --archive=$BACKUP_DIR/imgsent
     ;;
   restore)
     mkdir -p ~/.config/Code/User
@@ -44,6 +45,7 @@ case "$1" in
     mongorestore --db=raw_text --gzip --archive=$BACKUP_DIR/zh_wiki
     mongorestore --db=raw_text --gzip --archive=$BACKUP_DIR/zh_news
     mongorestore --db=twse_daily --gzip --archive=$BACKUP_DIR/twse_daily
+    mongorestore --db=imgsent --gzip --archive=$BACKUP_DIR/imgsent
     ;;
   *)
     echo "Usage: backup_and_restore.sh (backup|restore)"

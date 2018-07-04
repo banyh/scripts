@@ -234,3 +234,16 @@ w = screen.get_active_window()
 pb = Gdk.pixbuf_get_from_window(w, *w.get_geometry())
 pb.savev("active.png", "png", (), ())
 ```
+
+## 避免影片播放時tearing的方法(未實證)
+
+修改`/etc/X11/xorg.conf`，在nvidia device的地方，加入
+```
+    Option         "TripleBuffer" "True"
+```
+並在最後加入
+```
+Section "Extensions"
+    Option "Composite" "Disable"
+EndSection
+```
