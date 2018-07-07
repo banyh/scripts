@@ -134,8 +134,9 @@ GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDS
 ```
 mkdir -p ~/.jupyter/custom
 echo ".CodeMirror { font-size: 18px; }" > ~/.jupyter/custom/custom.css
-echo ".container { width: 90%; }" >> ~/.jupyter/custom/custom.css
+echo ".container { width: 90% !important; }" >> ~/.jupyter/custom/custom.css
 echo ".output_text { font-size: 18px; }"  >> ~/.jupyter/custom/custom.css
+echo ".terminal-app .terminal { font-family: Inconsolata for powerline; font-size: 22px; }" >> ~/.jupyter/custom/custom.css
 ```
 
 ## 掛載Diskstation的NFS4
