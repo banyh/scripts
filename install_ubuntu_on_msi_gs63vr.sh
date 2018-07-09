@@ -53,6 +53,7 @@ sh install_git.sh
 # Install python
 # ----------------------------------------------------------------------------------------------
 sh install_python.sh
+sh install_python_packages.sh
 sh install_pyqt4.sh
 sh install_opencv.sh
 
