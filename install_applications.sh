@@ -6,10 +6,12 @@ dpkg -i skypeforlinux-64.deb
 
 # Dropbox
 wget "https://www.dropbox.com/download?dl=packages/ubuntu/dropbox_2015.10.28_amd64.deb" -O dropbox_2015.10.28_amd64.deb
+apt install -y python-cairo python-gobject-2 python-gtk2
 dpkg -i dropbox_2015.10.28_amd64.deb
 
 # Slack
 wget "https://downloads.slack-edge.com/linux_releases/slack-desktop-3.2.0-beta25a7a50e-amd64.deb"
+apt install -y libappindicator1 libindicator7
 dpkg -i slack-desktop-3.2.0-beta25a7a50e-amd64.deb
 
 # Visual Studio Code
@@ -17,7 +19,7 @@ wget "https://go.microsoft.com/fwlink/?LinkID=760868" -O code.deb
 dpkg -i code.deb
 
 # BBS軟體
-apt install -y gemanx
+apt install -y gemanx-gtk2
 
 # Shutter抓圖軟體
 apt install -y shutter
@@ -49,6 +51,7 @@ tar xvf 'FoxitReader_2.4.1_Setup.run.tar'
 
 # Beyond Compare檔案比較
 wget "https://www.scootersoftware.com/bcompare-4.2.4.22795_amd64.deb"
+apt install -y libqt4-opengl libqtwebkit4
 dpkg -i bcompare-4.2.4.22795_amd64.deb
 sed -i "s/keexjEP3t4Mue23hrnuPtY4TdcsqNiJL-5174TsUdLmJSIXKfG2NGPwBL6vnRPddT7tH29qpkneX63DO9ECSPE9rzY1zhThHERg8lHM9IBFT+rVuiY823aQJuqzxCKIE1bcDqM4wgW01FH6oCBP1G4ub01xmb4BGSUG6ZrjxWHJyNLyIlGvOhoY2HAYzEtzYGwxFZn2JZ66o4RONkXjX0DF9EzsdUef3UAS+JQ+fCYReLawdjEe6tXCv88GKaaPKWxCeaUL9PejICQgRQOLGOZtZQkLgAelrOtehxz5ANOOqCaJgy2mJLQVLM5SJ9Dli909c5ybvEhVmIC0dc9dWH+/N9KmiLVlKMU7RJqnE+WXEEPI1SgglmfmLc1yVH7dqBb9ehOoKG9UE+HAE1YvH1XX2XVGeEqYUY-Tsk7YBTz0WpSpoYyPgx6Iki5KLtQ5G-aKP9eysnkuOAkrvHU8bLbGtZteGwJarev03PhfCioJL4OSqsmQGEvDbHFEbNl1qJtdwEriR+VNZts9vNNLk7UGfeNwIiqpxjk4Mn09nmSd8FhM4ifvcaIbNCRoMPGl6KU12iseSe+w+1kFsLhX+OhQM8WXcWV10cGqBzQE9OqOLUcg9n0krrR3KrohstS9smTwEx9olyLYppvC0p5i7dAx2deWvM1ZxKNs0BvcXGukR+/g" /usr/lib/beyondcompare/BCompare
 
