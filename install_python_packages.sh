@@ -35,10 +35,8 @@ pip3 install tensorflow-gpu keras h5py
 # Machine Learning: pytorch
 # --------------------------------------------------
 
-pip install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp27-cp27mu-linux_x86_64.whl
-pip install torchvision
-pip3 install -U http://download.pytorch.org/whl/cu90/torch-0.4.0-cp36-cp36m-linux_x86_64.whl
-pip3 install torchvision
+pip install torch torchvision
+pip3 install torch torchvision
 
 apt install -y sox libsox-dev libsox-fmt-all
 pip install librosa
