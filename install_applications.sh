@@ -66,6 +66,7 @@ apt install -y gnome-panel                    # 新增app捷徑
 add-apt-repository -y ppa:webupd8team/nemo3
 apt-get update
 apt install -y nemo
+apt install -y thunar  # for bulk rename in nemo
 
 # MComix看漫畫
 apt install -y mcomix
