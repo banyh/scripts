@@ -33,7 +33,7 @@ ldconfig
 cd ..
 ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/python3 /usr/local/bin/python3
 ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/virtualenv /usr/local/bin/virtualenv
-ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/jupyter /usr/local/lib/python$PYTHON3_VERSION/bin/jupyter3
+ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/jupyter /usr/local/lib/jupyter3
 hash -d python3
 curl https://bootstrap.pypa.io/get-pip.py | python3
 ln -sf /usr/local/lib/python$PYTHON3_VERSION/bin/pip3 /usr/local/bin/pip3
