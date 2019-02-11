@@ -4,6 +4,7 @@
 # 如果有舊的nvidia driver存在，一律移除並重開機；沒有則省略這一步
 # dpkg -l | grep nvidia
 # apt-get remove --purge "nvidia-*"
+# dpkg -l | grep cuda- | awk '{print $2}' | xargs -n1 sudo dpkg --purge
 # reboot
 
 # CUDA 10.0 網路版 (會同時安裝最新的 nvidia driver)
