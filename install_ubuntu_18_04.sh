@@ -40,7 +40,7 @@ apt -f install -y
 # ----------------------------------------------------------------------------------------------
 # Install ffmpeg
 # ----------------------------------------------------------------------------------------------
-add-apt-repository -y ppa:jonathonf/ffmpeg-3
+add-apt-repository -y ppa:jonathonf/ffmpeg-4
 apt update
 apt upgrade -y
 apt-get -y install ffmpeg
