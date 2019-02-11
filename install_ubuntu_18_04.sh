@@ -14,10 +14,10 @@ apt-get update
 apt-get install -y cuda
 
 # 安裝CUDNN 7.0 (如果安裝CUDA 9.x，則唯一能配對的版本是CUDNN 7.0)
-wget https://storage.googleapis.com/gliacloud-package/cudnn_ubuntu_16.04/libcudnn7_7.0.5.15-1%2Bcuda9.0_amd64.deb
-wget https://storage.googleapis.com/gliacloud-package/cudnn_ubuntu_16.04/libcudnn7-dev_7.0.5.15-1%2Bcuda9.0_amd64.deb
-dpkg -i libcudnn7_7.0.5.15-1+cuda9.0_amd64.deb
-dpkg -i libcudnn7-dev_7.0.5.15-1+cuda9.0_amd64.deb
+wget https://storage.googleapis.com/gliacloud-package/cudnn_ubuntu_18.04/libcudnn7_7.4.2.24-1+cuda10.0_amd64.deb
+wget https://storage.googleapis.com/gliacloud-package/cudnn_ubuntu_18.04/libcudnn7-dev_7.4.2.24-1+cuda10.0_amd64.deb
+dpkg -i libcudnn7_7.4.2.24-1+cuda10.0_amd64.deb
+dpkg -i libcudnn7-dev_7.4.2.24-1+cuda10.0_amd64.deb
 
 # ----------------------------------------------------------------------------------------------
 # Install dependencies
