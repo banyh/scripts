@@ -146,9 +146,33 @@ echo ".terminal-app .terminal { font-family: Inconsolata for powerline; font-siz
 2. 修改`/etc/idmapd.conf`，在`[general]`區段新增一行`Domain = bany`
 3. 修改`/etc/fstab`，新增以下兩行
 ```
-192.168.1.150:/volume1/Bany              /diskstation/Bany   nfs    bg,soft,rw,noexec,nodev,nosuid,timeo=1200 0 2
-192.168.1.150:/volume1/Family            /diskstation/Family nfs    bg,soft,rw,noexec,nodev,nosuid,timeo=1200 0 2
+192.168.1.150:/volume1/Bany      /diskstation/Bany    nfs  bg,soft,rw,noauto,noexec,nodev,nosuid,timeo=1200 0 2
+192.168.1.150:/volume1/Family    /diskstation/Family  nfs  bg,soft,rw,noauto,noexec,nodev,nosuid,timeo=1200 0 2
 ```
+
+## 根據不同的網路決定是否 mount NFS
+
+先安裝`apt-get install autofs`。
+
+修改`/etc/auto.master`，裡面的格式是`mount-point [map-type[,format]:]map [options]`，新增2行：
+```
+/diskstation    /etc/auto.nfs    --timeout 30
+```
+
+新建`/etc/auto.nfs`
+```
+Bany    -fstype=nfs4,rw,bg,soft,noexec,nodev,nosuid,rsize=32768,wsize=32768    192.168.1.150:/volume1/Bany
+Family  -fstype=nfs4,rw,bg,soft,noexec,nodev,nosuid,rsize=32768,wsize=32768    192.168.1.150:/volume1/Family
+```
+
+修改`/etc/default/nfs-common`，新增一行
+```
+NEED_IDMAPD=yes
+```
+
+重新啟動autofs，有兩種方式，不確定那一種是對的
+1. `systemctl restart autofs`
+2. `/etc/init.d/autofs reload`
 
 ## 讓HDMI可以輸出聲音
 
