@@ -15,22 +15,21 @@ pip install lxml bs4 pymongo pulp gevent crcmod autopep8 flashtext spacy
 apt-get install -y --no-install-recommends libboost-all-dev libopenblas-dev liblapack-dev
 apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler
 
-pip install lightgbm --install-option=--gpu --install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/lib64/libOpenCL.so"
+pip install lightgbm --install-option=--gpu --install-option="--opencl-include-dir=/usr/local/cuda-10.0/include/" --install-option="--opencl-library=/usr/local/cuda-10.0/targets/x86_64-linux/lib/libOpenCL.so"
 
 # --------------------------------------------------
 # Machine Learning: tensorflow
 # --------------------------------------------------
 
-# Only nightly version support Python 3.7
-pip install tf-nightly-gpu
+pip install https://storage.googleapis.com/tensorflow/linux/gpu/tensorflow_gpu-1.13.1-cp37-cp37m-linux_x86_64.whl
 
 # --------------------------------------------------
 # Machine Learning: pytorch
 # --------------------------------------------------
 
 # CUDA 10.0 and Python 3.7
-pip install https://download.pytorch.org/whl/cu100/torch-1.0.0-cp37-cp37m-linux_x86_64.whl
-pip install torchvision
+pip install https://download.pytorch.org/whl/cu100/torch-1.1.0-cp37-cp37m-linux_x86_64.whl
+pip install https://download.pytorch.org/whl/cu100/torchvision-0.3.0-cp37-cp37m-linux_x86_64.whl
 
 apt install -y sox libsox-dev libsox-fmt-all
 pip install librosa
