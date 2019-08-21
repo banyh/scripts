@@ -1,4 +1,23 @@
-## 如何啟用筆電的 Intel Graphic Driver?
+## Ubuntu 18.04 如何啟用筆電的 Intel Graphic Driver?
+
+reference: https://devtalk.nvidia.com/default/topic/1043405/linux/ubuntu-18-04-headless_390-intel-igpu-after-prime-select-intel-lost-contact-to-geforce-1050ti/
+
+1. 必須確定 `prime-select query` 的結果是 nvidia，如果不是，就轉換過去 `prime-select nvidia`。當 prime-select=intel 時，會強制關掉 nvidia GPU。
+
+2. 新增 `/etc/X11/xorg.conf` 內容如下：
+```
+Section "Device"
+    Identifier     "intel"
+    Driver         "modesetting"
+    BusID          "PCI:0:2:0"
+EndSection
+```
+
+3. 修改 `/etc/default/grub`，在 `GRUB_CMDLINE_LINUX_DEFAULT` 內新增 `nogpumanager`。之後執行`update-grub`更新。
+
+4. 重開機
+
+## Ubuntu 16.04 如何啟用筆電的 Intel Graphic Driver?
 
 1. 在`/etc/ld.so.conf.d/`中，將所有nvidia driver對應的目錄，集中在`nvidia.conf`中 (下面的390版號需要根據自己的版本修改)
 ```
