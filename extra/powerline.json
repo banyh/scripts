@@ -1,0 +1,20 @@
+{
+  "segments": [
+    "time",
+    "virtual_env",
+    "username",
+    "ssh",
+    "cwd",
+    "git",
+    "root",
+    "read_only"
+  ],
+  "cwd": {
+    "max_depth": 4
+  },
+  "time": {
+    "format": "%H:%M"
+  },
+  "mode": "patched",
+  "theme": "gruvbox"
+}
