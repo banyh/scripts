@@ -5,14 +5,11 @@ wget https://raw.githubusercontent.com/banyh/scripts/master/extra/config.fish
 source ~/.config/fish/config.fish
 cd ~
 
-mkdir ~/bin
-cd ~/bin
-git clone https://github.com/banyh/powerline-shell
-cd powerline-shell
-./install.py
-chmod +x installr.py
-./installr.py
-cd ~
+# install powerline-shell
+sudo pip install powerline-shell
+sudo -- sh -c 'cd /usr/share/fonts; git clone https://github.com/powerline/fonts; fc-cache -f -v'
+mkdir ~/.config/powerline-shell
+wget https://raw.githubusercontent.com/banyh/scripts/master/extra/powerline.json -O ~/.config/powerline-shell/config.json
 
 # set up jupyter notebook
 jupyter notebook --generate-config
