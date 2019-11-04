@@ -8,8 +8,8 @@
 # reboot
 
 # CUDA 10.0 網路版 (會同時安裝最新的 nvidia driver)
-wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.1.168-1_amd64.deb
-dpkg -i cuda-repo-ubuntu1804_10.1.168-1_amd64.deb
+wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
+dpkg -i cuda-repo-ubuntu1804_10.0.130-1_amd64.deb
 apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
 apt-get update
 apt-get install -y cuda-10-0
