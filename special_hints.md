@@ -1,3 +1,13 @@
+## 安裝 Unity3D SDK
+
+1. 下載[Unity Hub](https://public-cdn.cloud.unity3d.com/hub/prod/UnityHub.AppImage)，並安裝。
+
+2. 執行Unity Hub，左邊有三個功能`專案`、`學習`、`安裝`，進入`安裝`後，右上角可以`新增`一個版本的Unity。
+
+3. 右上角有人頭的圖示，可以註冊帳號，必須註冊才能取得授權。
+
+4. 登入後，可以在`喜好設定`中的`授權管理`，執行`啟用新的授權`，以Unity個人版啟用。
+
 ## Ubuntu 18.04 如何啟用筆電的 Intel Graphic Driver?
 
 reference: https://devtalk.nvidia.com/default/topic/1043405/linux/ubuntu-18-04-headless_390-intel-igpu-after-prime-select-intel-lost-contact-to-geforce-1050ti/
