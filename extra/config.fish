@@ -17,8 +17,23 @@ set -x VIRTUAL_ENV_DISABLE_PROMPT 1
 # for python package "better_exceptions"
 set -x BETTER_EXCEPTIONS 1
 
+
 function fish_prompt
     powerline-shell --shell bare $status
+end
+
+# 使用方式: virtualenv [name]
+function virtualenv
+  conda create -n "$argv[1]" python -y
+  conda activate "$argv[1]"
+  conda env config vars set PIP_EXTRA_INDEX_URL=https://gliacloud:cookiebank@pypi-dot-living-bio.appspot.com/pypi
+  conda activate "$argv[1]"
+  conda install -c bioconda mysqlclient -y
+  conda install -c conda-forge uwsgi -y
+  conda install ipython -y
+  pip install genv
+  conda env config vars set GOOGLE_APPLICATION_CREDENTIALS=(python -c "import genv; print(genv.__file__.replace('__init__.py', 'gapp/unlimited.json'))")
+  conda activate "$argv[1]"
 end
 
 function staging
