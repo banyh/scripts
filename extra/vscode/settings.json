@@ -1,0 +1,28 @@
+{
+    "editor.minimap.enabled": false,
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Slack Theme Hoth",
+    "editor.suggestSelection": "first",
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "workbench.editor.enablePreview": false,
+    "editor.renderWhitespace": "boundary",
+    "editor.fontSize": 18,
+    "python.languageServer": "Pylance",
+    "editor.rulers": [
+        79,
+        80,
+        98,
+        99,
+        100
+    ],
+    "workbench.startupEditor": "none",
+    "workbench.enableExperiments": false,
+    "workbench.settings.enableNaturalLanguageSearch": false,
+    "telemetry.enableCrashReporter": false,
+    "telemetry.enableTelemetry": false,
+    "explorer.confirmDelete": false,
+    "terminal.integrated.fontFamily": "Cascadia Code PL",
+    "terminal.integrated.inheritEnv": false,
+    "files.trimTrailingWhitespace": true,
+    "explorer.confirmDragAndDrop": false
+}

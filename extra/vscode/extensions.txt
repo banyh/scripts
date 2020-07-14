@@ -1,0 +1,11 @@
+Material Icon Theme
+Slack Theme
+GitLens
+Pylance
+Visual Studio IntelliCode
+
+Remote - Containers
+Remote - SSH
+Remote - SSH: Editing Configuration Files
+Remote - WSL
+Remove Development

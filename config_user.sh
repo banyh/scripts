@@ -1,15 +1,17 @@
 # simple config for fish
 mkdir -p ~/.config/fish
-cd ~/.config/fish
-wget https://raw.githubusercontent.com/banyh/scripts/master/extra/config.fish
+wget https://raw.githubusercontent.com/banyh/scripts/master/extra/fish_shell/config.fish -O ~/.config/fish/config.fish
 source ~/.config/fish/config.fish
-cd ~
 
 # install powerline-shell
 sudo pip install powerline-shell
 sudo -- sh -c 'cd /usr/share/fonts; git clone https://github.com/powerline/fonts; fc-cache -f -v'
 mkdir ~/.config/powerline-shell
-wget https://raw.githubusercontent.com/banyh/scripts/master/extra/powerline.json -O ~/.config/powerline-shell/config.json
+wget https://raw.githubusercontent.com/banyh/scripts/master/extra/powerline-shell/config.json -O ~/.config/powerline-shell/config.json
+
+# install boshiamy
+wget https://github.com/banyh/scripts/raw/master/extra/boshiamy/boshiamy.conf -O ~/.config/fcitx/table/boshiamy.conf
+wget https://github.com/banyh/scripts/raw/master/extra/boshiamy/boshiamy.mb -O ~/.config/fcitx/table/boshiamy.mb
 
 # set up jupyter notebook
 jupyter notebook --generate-config
