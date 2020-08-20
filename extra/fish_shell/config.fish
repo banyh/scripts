@@ -44,22 +44,33 @@ function virtualenv
   pip install genv
   conda env config vars set GOOGLE_APPLICATION_CREDENTIALS=(python -c "import genv; print(genv.__file__.replace('__init__.py', 'gapp/unlimited.json'))")
   conda activate "$argv[1]"
+
+  if test -d client and test -f setup.py
+    pip install -e .
+  end
+  if test -f requirements.txt
+    pip install -r requirements.txt
+  end
 end
 
 function staging
   # 用途: 使k8s切換到staging cluster
   set -xg CLUSTER g8s-staging
-  gcloud container clusters get-credentials g8s-staging --zone=asia-east1-a
   set -xg GIMG2VEC gimg2vec.gliavideo.cn
-  eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "_ROUTE" "=" $1 ".default.githubhero.com"}')
-  eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "=" "35.187.155.48"}')
+  set -xg GBERT gbert.gliavideo.cn
+
+  gcloud container clusters get-credentials g8s-staging --zone=asia-east1-a
+  # eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "_ROUTE" "=" $1 ".default.githubhero.com"}')
+  # eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "=" "35.187.155.48"}')
 end
 
 function knative
   # 用途: 使k8s切換到production cluster
   set -xg CLUSTER g8s-knative
   set -xg GIMG2VEC gimg2vec.gliavideo.cn
+  set -xg GBERT gbert.gliavideo.cn
+
   gcloud container clusters get-credentials g8s-knative --zone=asia-east1-a
-  eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "_ROUTE" "=" $1 ".default.gliavideo.cn"}')
-  eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "=" "35.234.20.242"}')
+  # eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "_ROUTE" "=" $1 ".default.gliavideo.cn"}')
+  # eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "=" "35.234.20.242"}')
 end
