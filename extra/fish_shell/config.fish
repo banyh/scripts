@@ -9,6 +9,7 @@ alias df 'df -h -x squashfs -T -x tmpfs'
 alias .. 'cd ..'
 alias ... 'cd ../..'
 alias delh 'echo all | history --delete --prefix locate & echo 1 | history --delete --prefix locate'
+alias pipcompile "pip-compile --extra-index-url='https://gliacloud:cookiebank@pypi-dot-living-bio.appspot.com/pypi' requirements.in"
 
 ###############################################################################
 # Environment Variables
@@ -21,6 +22,9 @@ set -x LC_ALL en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
 set -x PATH $PATH ~/bin
 set -x LOCATE_PATH /var/lib/mlocate/backup.db:/var/lib/mlocate/qnap.db
+
+set -xg GIMG2VEC gimg2vec.gliavideo.cn
+set -xg GBERT gbert.gliavideo.cn
 
 ###############################################################################
 # Functions
@@ -45,7 +49,7 @@ function virtualenv
   conda env config vars set GOOGLE_APPLICATION_CREDENTIALS=(python -c "import genv; print(genv.__file__.replace('__init__.py', 'gapp/unlimited.json'))")
   conda activate "$argv[1]"
 
-  if test -d client and test -f setup.py
+  if begin; test -d client; and test -f setup.py; end
     pip install -e .
   end
   if test -f requirements.txt
@@ -56,21 +60,11 @@ end
 function staging
   # 用途: 使k8s切換到staging cluster
   set -xg CLUSTER g8s-staging
-  set -xg GIMG2VEC gimg2vec.gliavideo.cn
-  set -xg GBERT gbert.gliavideo.cn
-
   gcloud container clusters get-credentials g8s-staging --zone=asia-east1-a
-  # eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "_ROUTE" "=" $1 ".default.githubhero.com"}')
-  # eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "=" "35.187.155.48"}')
 end
 
 function knative
   # 用途: 使k8s切換到production cluster
   set -xg CLUSTER g8s-knative
-  set -xg GIMG2VEC gimg2vec.gliavideo.cn
-  set -xg GBERT gbert.gliavideo.cn
-
   gcloud container clusters get-credentials g8s-knative --zone=asia-east1-a
-  # eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "_ROUTE" "=" $1 ".default.gliavideo.cn"}')
-  # eval (kubectl get svc | grep "ExternalName" | grep -v "admin" | awk '{gsub(/-/, "_"); print "export " toupper($1) "=" "35.234.20.242"}')
 end
