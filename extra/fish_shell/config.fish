@@ -9,7 +9,6 @@ alias df 'df -h -x squashfs -T -x tmpfs'
 alias .. 'cd ..'
 alias ... 'cd ../..'
 alias delh 'echo all | history --delete --prefix locate & echo 1 | history --delete --prefix locate'
-alias pipcompile "pip-compile --extra-index-url='https://gliacloud:cookiebank@pypi-dot-living-bio.appspot.com/pypi' requirements.in"
 
 ###############################################################################
 # Environment Variables
@@ -23,9 +22,6 @@ set -x LC_CTYPE en_US.UTF-8
 set -x PATH $PATH ~/bin
 set -x LOCATE_PATH /var/lib/mlocate/backup.db:/var/lib/mlocate/qnap.db
 
-set -xg GIMG2VEC gimg2vec.gliavideo.cn
-set -xg GBERT gbert.gliavideo.cn
-
 ###############################################################################
 # Functions
 ###############################################################################
@@ -33,38 +29,4 @@ set -xg GBERT gbert.gliavideo.cn
 function fish_prompt
   # 用途: 開啟powerline-shell的功能，需要先用pip install powerline-shell安裝
   powerline-shell --shell bare $status
-end
-
-function virtualenv
-  # 用途: 使用conda產生gliacloud project所需的環境，其中mysqlclient及uwsgi的安裝比較特別
-  # 使用方式: virtualenv [name]
-  conda create -n "$argv[1]" python -y
-  conda activate "$argv[1]"
-  conda env config vars set PIP_EXTRA_INDEX_URL=https://gliacloud:cookiebank@pypi-dot-living-bio.appspot.com/pypi
-  conda activate "$argv[1]"
-  conda install -c bioconda mysqlclient -y
-  conda install -c conda-forge uwsgi -y
-  conda install ipython -y
-  pip install genv
-  conda env config vars set GOOGLE_APPLICATION_CREDENTIALS=(python -c "import genv; print(genv.__file__.replace('__init__.py', 'gapp/unlimited.json'))")
-  conda activate "$argv[1]"
-
-  if begin; test -d client; and test -f setup.py; end
-    pip install -e .
-  end
-  if test -f requirements.txt
-    pip install -r requirements.txt
-  end
-end
-
-function staging
-  # 用途: 使k8s切換到staging cluster
-  set -xg CLUSTER g8s-staging
-  gcloud container clusters get-credentials g8s-staging --zone=asia-east1-a
-end
-
-function knative
-  # 用途: 使k8s切換到production cluster
-  set -xg CLUSTER g8s-knative
-  gcloud container clusters get-credentials g8s-knative --zone=asia-east1-a
 end
