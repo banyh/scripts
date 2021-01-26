@@ -118,20 +118,20 @@ PRUNEFS="NFS nfs nfs4 rpc_pipefs afs binfmt_misc proc smbfs autofs iso9660 ncpfs
 ```
 修改root擁有的`.config/fish/config.fish`
 ```
-set -x LOCATE_PATH /var/lib/mlocate/backup.db:/var/lib/mlocate/synology.db
+set -x LOCATE_PATH /var/lib/mlocate/windows.db:/var/lib/mlocate/wdblack.db
 
 function updatedb
-    if test -d /diskstation/Bany/Course
-        echo "Update files on Synology DiskStation."
-        /usr/bin/updatedb -l 1 -o /var/lib/mlocate/synology.db -U /diskstation/ --prunefs ntfs
+    if test -d /media/banyhong/WDBLACK/Courses
+        echo "Update files on WDBLACK."
+        /usr/bin/updatedb -l 1 -o /var/lib/mlocate/wdblack.db -U /media/banyhong/WDBLACK/
     else
-        echo "Synology DiskStation is not mounted. Skip updatedb."
+        echo "WDBLACK is not mounted. Skip updatedb."
     end
-    if test -d /media/banyhong/BACKUP/Project
-        echo "Update files on Seagate External Disk."
-        /usr/bin/updatedb -l 1 -o /var/lib/mlocate/backup.db -U /media/banyhong/BACKUP/
+    if test -d /media/banyhong/Windows/Windows
+        echo "Update files on Windows Disk."
+        /usr/bin/updatedb -l 1 -o /var/lib/mlocate/windows.db -U /media/banyhong/Windows/
     else
-        echo "Seagate External Disk is not mounted. Skip updatedb."
+        echo "Windows Disk is not mounted. Skip updatedb."
     end
     echo "Update files on Ubuntu file system."
     /usr/bin/updatedb
