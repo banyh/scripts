@@ -1,3 +1,5 @@
+# WSL Ubuntu端可能需要作的事
+
 ## 設定sudo權限
 
 執行`sudo visudo`，並新增一行
@@ -12,24 +14,7 @@ apt update
 apt -y upgrade
 ```
 
-## 安裝MySQL
-
-```
-apt install -y mysql-server
-/etc/init.d/mysql start
-mysql < /mnt/d/mysql-backup-2020-10-14.sql
-```
-
-## 安裝CUDA
-
-```
-apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/7fa2af80.pub
-sh -c 'echo "deb http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64 /" > /etc/apt/sources.list.d/cuda.list'
-apt-get update
-apt-get install -y cuda-toolkit-11-0
-```
-
-## 安裝VScode
+## 安裝VScode(只需要安裝在windows端)
 
 先按此步驟安裝Windows端: https://docs.microsoft.com/zh-tw/windows/wsl/tutorials/wsl-vscode
 
@@ -59,7 +44,7 @@ ln -s ~/miniconda3/bin ~/bin
 rm Miniconda3-latest-Linux-x86_64.sh
 ```
 
-## 設定使用者
+## 使用者設定
 
 先執行`chsh`將預設shell設定為`/usr/bin/fish`，然後執行下列指令來設定fish
 ```
@@ -87,10 +72,3 @@ git config --global user.email banyhong@gliacloud.com
 1. 新增`~/.ssh/id_rsa`及`~/.ssh/id_rsa.pub`
 2. `chmod 400 ~/.ssh/id_rsa`
 3. 新增`~/.ssh/config`，將常用的host加進去
-
-## 下載重要的repo
-
-```
-git clone git@github.com:banyh/pybany.git
-git clone git@github.com:banyh/scripts.git
-```

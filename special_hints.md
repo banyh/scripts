@@ -1,112 +1,3 @@
-## 安裝 Unity3D SDK
-
-1. 下載[Unity Hub](https://public-cdn.cloud.unity3d.com/hub/prod/UnityHub.AppImage)，並安裝。
-
-2. 執行Unity Hub，左邊有三個功能`專案`、`學習`、`安裝`，進入`安裝`後，右上角可以`新增`一個版本的Unity。
-
-3. 右上角有人頭的圖示，可以註冊帳號，必須註冊才能取得授權。
-
-4. 登入後，可以在`喜好設定`中的`授權管理`，執行`啟用新的授權`，以Unity個人版啟用。
-
-## Ubuntu 18.04 如何啟用筆電的 Intel Graphic Driver?
-
-reference: https://devtalk.nvidia.com/default/topic/1043405/linux/ubuntu-18-04-headless_390-intel-igpu-after-prime-select-intel-lost-contact-to-geforce-1050ti/
-
-1. 必須確定 `prime-select query` 的結果是 nvidia，如果不是，就轉換過去 `prime-select nvidia`。當 prime-select=intel 時，會強制關掉 nvidia GPU。
-
-2. 新增 `/etc/X11/xorg.conf` 內容如下：
-```
-Section "Device"
-    Identifier     "intel"
-    Driver         "modesetting"
-    BusID          "PCI:0:2:0"
-EndSection
-```
-
-3. 修改 `/etc/default/grub`，在 `GRUB_CMDLINE_LINUX_DEFAULT` 內新增 `nogpumanager`。之後執行`update-grub`更新。
-
-4. 重開機
-
-## Ubuntu 16.04 如何啟用筆電的 Intel Graphic Driver?
-
-1. 在`/etc/ld.so.conf.d/`中，將所有nvidia driver對應的目錄，集中在`nvidia.conf`中 (下面的390版號需要根據自己的版本修改)
-```
-/usr/lib/nvidia-390
-/usr/lib32/nvidia-390
-```
-
-2. 修改 `/etc/default/grub`，將`GRUB_CMDLINE_LINUX_DEFAULT`改成以下內容，這個修改是為了避免開機黑畫面。
-```
-GRUB_CMDLINE_LINUX_DEFAULT='pcie_port_pm=off acpi_backlight=none acpi_osi=Linux acpi_osi=! acpi_osi="Windows 2009"'
-```
-
-3. 新增`/etc/init.d/nvidia`，內容如下
-```
-#!/bin/sh
-### BEGIN INIT INFO
-# Provides:          nvidia
-# Required-Start:    $all
-# Required-Stop:     $all
-# Default-Start:     5
-# Default-Stop:      0 6
-# Short-Description: unload nvidia library
-# Description:       unload nvidia library
-### END INIT INFO
-
-PRIME=$(prime-select query)
-if [ "$PRIME" = "nvidia" ]; then
-    exit 0
-fi
-
-case "$1" in
-  start)
-    sleep 10
-    cd /etc/ld.so.conf.d
-    mv nvidia.conf.bak nvidia.conf
-    ldconfig
-    nvidia-smi
-    ;;
-  stop)
-    cd /etc/ld.so.conf.d
-    mv nvidia.conf nvidia.conf.bak
-    ldconfig
-    ;;
-  *)
-    echo "Usage: /etc/init.d/nvidia (start|stop)"
-    exit 1
-    ;;
-esac
-```
-
-4. 執行`update-rc.d nvidia defaults`，應該會自動在`/etc/rc5.d`建立`SXXnvidia`的連結，並在`/etc/rc0.d`、`/etc/rc6.d`建立`KXXnvidia`的連結
-
-5. 測試一下，執行`/etc/init.d/nvidia stop`後，再執行`nvidia-smi`就會出現找不到library的錯誤。執行`/etc/init.d/nvidia start`後，再執行`nvidia-smi`就可以看到正常的GPU狀態。當測試沒問題後就可以重新開機
-
-6. 如果開機後出現問題怎麼辦? 可以按Ctrl+Alt+1進入tty模式，執行`/etc/init.d/nvidia stop`後再`reboot`。重開機後應該可以進入桌面，這時再來檢查為何`rc6.d`的script沒有正常執行。
-
-7. 已知的副作用：在`prime-select intel`開機後，會無法執行system settings(`unity-control-center`)，會出現
-```
-GLib-CRITICAL **: g_strsplit: assertion 'string != NULL' failedv
-```
-
-## 如何使用嘸蝦米?
-
-如果是Ubuntu 18.04，預設沒有安裝fcitx，需要安裝fcitx並且**重開機**才會生效。
-```
-sudo apt install -y fcitx fcitx-config-common fcitx-ui-qimpanel
-```
-
-設定 --> 系統設定 (System Settings) --> 語言支援（Language Support）中，下面的鍵盤輸入法系統 (Keyboard input method system) 選擇`fcitx`，然後安裝嘸蝦米
-```
-sudo apt install -y fcitx-table-boshiamy
-```
-安裝後，在fcitx的設定中新增嘸蝦米輸入法，然後下載以下檔案
-```
-cd .config/fcitx/table
-wget https://github.com/banyh/scripts/raw/master/extra/boshiamy.conf
-wget https://github.com/banyh/scripts/raw/master/extra/boshiamy.mb
-```
-
 ## 設定`updatedb`，將不同的設備放在不同的db中
 
 `/etc/updatedb.conf`
@@ -151,24 +42,7 @@ GXN1eh9FbDiX1ACdd7XKMV7hL7x0ClBJLUJ-zFfKofjaj2yxE53xauIfkqZ8FoLpcZ0Ux6McTyNmODDS
 --- END LICENSE KEY -----
 ```
 
-## 設定開機後自動執行jupyter notebook
-
-輸入`crontab -e`後，新增一行
-```
-@reboot nohup /usr/local/lib/python2.7.13/bin/jupyter notebook --notebook-dir="/data" > /dev/null &
-```
-
-## 修改jupyter notebook的字型及版面
-
-```
-mkdir -p ~/.jupyter/custom
-echo ".CodeMirror { font-size: 18px; }" > ~/.jupyter/custom/custom.css
-echo ".container { width: 90% !important; }" >> ~/.jupyter/custom/custom.css
-echo ".output_text { font-size: 18px; }"  >> ~/.jupyter/custom/custom.css
-echo ".terminal-app .terminal { font-family: Inconsolata for powerline; font-size: 22px; }" >> ~/.jupyter/custom/custom.css
-```
-
-## 掛載Diskstation的NFS4
+## 掛載Synology Diskstation的NFS4
 
 前置作業
 1. `apt-get install nfs-common`
@@ -177,6 +51,15 @@ echo ".terminal-app .terminal { font-family: Inconsolata for powerline; font-siz
 ```
 192.168.1.150:/volume1/Bany      /diskstation/Bany    nfs  bg,soft,rw,noauto,noexec,nodev,nosuid,timeo=1200 0 2
 192.168.1.150:/volume1/Family    /diskstation/Family  nfs  bg,soft,rw,noauto,noexec,nodev,nosuid,timeo=1200 0 2
+```
+
+## 掛載QNAP的NFS4
+
+```
+mkdir -p /media/Multimedia /media/Home /media/Download
+mount -t nfs4 -o vers=4 192.168.1.200:/Multimedia /media/Multimedia
+mount -t nfs4 -o vers=4 192.168.1.200:/homes/admin /media/Home
+mount -t nfs4 -o vers=4 192.168.1.200:/Download /media/Download
 ```
 
 ## 根據不同的網路決定是否 mount NFS
@@ -202,48 +85,6 @@ NEED_IDMAPD=yes
 重新啟動autofs，有兩種方式，不確定那一種是對的
 1. `systemctl restart autofs`
 2. `/etc/init.d/autofs reload`
-
-## 讓HDMI可以輸出聲音
-
-資料來源: https://bugs.launchpad.net/ubuntu/+source/alsa-driver/+bug/1377653/comments/19
-
-1. 新增檔案`/etc/systemd/system/fix-hdmi-audio.service`，其內容如下：
-
-```
-[Unit]
-Description=nVidia HDMI Audio Fixer
-Before=systemd-logind.service display-manager.service
-After=module-init-tools.service
-
-[Service]
-Type=oneshot
-ExecStart=/usr/local/bin/fix-hdmi-audio.sh
-
-[Install]
-WantedBy=multi-user.target
-```
-
-2. 新增檔案`/usr/local/bin/fix-hdmi-audio.sh`，其內容如下：
-
-```
-#!/bin/sh
-setpci -s 01:00.0 0x488.l=0x2000000:0x2000000
-rmmod nvidia-uvm nvidia-drm nvidia-modeset nvidia
-sh -c 'echo 1 > /sys/bus/pci/devices/0000:01:00.0/remove'
-sh -c 'echo 1 > /sys/bus/pci/devices/0000:00:01.0/rescan'
-modprobe nvidia nvidia-modeset nvidia-drm nvidia-uvm
-```
-
-3. 設定為可執行: `chmod +x /usr/local/bin/fix-hdmi-audio.sh`
-
-4. 啟動service: `systemctl enable fix-hdmi-audio.service`
-
-5. 安裝pulseaudio音量控制: `apt install pavucontrol`，執行PulseAudio Volume Control，
-    這時在Configuration的頁面，只會看到`內部音效`
-
-6. 重開機後，插上HDMI後播放音樂，然後打開PulseAudio Volume Control。
-    在Configuration的頁面，應該可以看到`內部音效`及`HDA NVidia`，而且`HDA NVidia`已經設為`Digital Stereo (HDMI) Output`。
-    在Playback的頁面，音樂播放器的右邊可以看到一個按鈕，可以選擇`內部音效`或是`HDA NVidia`，選擇`HDA NVidia`後聲音就會從HDMI出來。
 
 ## 讓ssh不要自動斷線
 
@@ -287,17 +128,4 @@ screen = Gdk.get_default_root_window().get_screen()
 w = screen.get_active_window()
 pb = Gdk.pixbuf_get_from_window(w, *w.get_geometry())
 pb.savev("active.png", "png", (), ())
-```
-
-## 避免影片播放時tearing的方法(未實證)
-
-修改`/etc/X11/xorg.conf`，在nvidia device的地方，加入
-```
-    Option         "TripleBuffer" "True"
-```
-並在最後加入
-```
-Section "Extensions"
-    Option "Composite" "Disable"
-EndSection
 ```

@@ -53,6 +53,9 @@ wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 chmod +x Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh
 
-apt install -y --no-install-recommends libboost-all-dev libopenblas-dev liblapack-dev libmysqlclient-dev libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler sox libsox-dev libsox-fmt-all
+apt-get install -y --no-install-recommends libboost-all-dev libopenblas-dev liblapack-dev
+apt-get install -y libprotobuf-dev libleveldb-dev libsnappy-dev libopencv-dev libhdf5-serial-dev protobuf-compiler libmysqlclient-dev sox libsox-dev libsox-fmt-all
 
-pip install lightgbm --install-option=--gpu --install-option="--opencl-include-dir=/usr/local/cuda/include/" --install-option="--opencl-library=/usr/local/cuda/targets/x86_64-linux/lib/libOpenCL.so"
+pip install lightgbm --install-option=--gpu
+
+conda install pytorch torchvision torchaudio cudatoolkit=11.0 -c pytorch
