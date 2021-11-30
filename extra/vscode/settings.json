@@ -1,12 +1,13 @@
+  
 {
     "editor.minimap.enabled": false,
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.colorTheme": "Slack Theme Hoth",
+    "workbench.colorTheme": "Visual Studio 2019 Light",
     "editor.suggestSelection": "first",
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "workbench.editor.enablePreview": false,
     "editor.renderWhitespace": "boundary",
-    "editor.fontSize": 18,
+    "editor.fontSize": 16,
     "python.languageServer": "Pylance",
     "editor.rulers": [
         79,
@@ -21,8 +22,28 @@
     "telemetry.enableCrashReporter": false,
     "telemetry.enableTelemetry": false,
     "explorer.confirmDelete": false,
-    "terminal.integrated.fontFamily": "Cascadia Code PL",
     "terminal.integrated.inheritEnv": false,
     "files.trimTrailingWhitespace": true,
-    "explorer.confirmDragAndDrop": false
+    "explorer.confirmDragAndDrop": false,
+    "security.workspace.trust.untrustedFiles": "open",
+    "editor.fontFamily": "Cascadia Code PL",
+    "workbench.editor.untitled.hint": "hidden",
+    "terminal.integrated.defaultProfile.windows": "Command Prompt",
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.rulers": [
+            80
+        ],
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": false
+    },
+    "remote.SSH.remotePlatform": {
+        "ubuntu": "linux",
+        "gpu": "linux",
+        "lubuntu": "linux"
+    }
 }
