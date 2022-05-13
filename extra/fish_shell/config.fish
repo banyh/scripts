@@ -19,8 +19,7 @@ alias delh 'echo all | history --delete --prefix locate & echo 1 | history --del
 
 set -x LC_ALL en_US.UTF-8
 set -x LC_CTYPE en_US.UTF-8
-set -x PATH $PATH ~/bin
-set -x LOCATE_PATH /var/lib/mlocate/backup.db:/var/lib/mlocate/qnap.db
+set -x PATH $PATH ~/bin ~/flutter/bin
 
 ###############################################################################
 # Functions
